@@ -205,7 +205,11 @@
                         </td>
                         <td>
                             <a asp-action="ChangeState" asp-route-id="@item.Id">@IsisTravelCore.Resources.RequestOffer.ChangeState</a> |
-                            <a data-toggle="modal" href="#EmailSender" data-request="@item.Id" data-mail="@item.Creator.Email">@IsisTravelCore.Resources.RequestOffer.SendMail</a>
+                           @if (item.Creator != null)
+                           {
+                        <a data-toggle="modal" href="#EmailSender" data-request="@item.Id" data-mail="@item.Creator.Email">@IsisTravelCore.Resources.RequestOffer.SendMail</a>
+                           }
+                            
                             <a asp-action="DisActive" asp-route-id="@item.Id">@IsisTravelCore.Resources.RequestOffer.DisActive</a>
                             @*<a asp-action="Details" asp-route-id="@item.Id">@IsisTravelCore.Resources.Genral.Details</a>*@
                         </td>

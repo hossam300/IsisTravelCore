@@ -215,13 +215,13 @@ $('#Quote-Form').submit(function (e) {
                     text: "Servicio agregada para recorrer con éxito",
                     type: "success",
                 });
-                var Quotesgtml = '<tr> <td style="text-align:center">' + $('#QuoteName').val() + '</td>' +
-                    '<td style="text-align:center">' + $("#QuotePrice").val() + '</td></tr>' +
-                    $('#QuoteName').val('');
-                $('#QuotePrice').val('');
-                $("#TourQuotes tbody").append(Quotesgtml);
+                //var Quotesgtml = '<tr> <td style="text-align:center">' + $('#QuoteName').val() + '</td>' +
+                //    '<td style="text-align:center">' + $("#QuotePrice").val() + '</td></tr>' +
+                //    $('#QuoteName').val('');
+                //$('#QuotePrice').val('');
+                //$("#TourQuotes tbody").append(Quotesgtml);
 
-                // location.reload();
+                 location.reload();
             },
             error: function () {
                 $(document).ajaxStop($.unblockUI);
