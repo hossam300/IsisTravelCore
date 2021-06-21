@@ -1,0 +1,223 @@
+﻿@model IsisTravelCore.Models.Domains.Hotel
+
+@{
+    ViewBag.Title = IsisTravelCore.Resources.Hotel.HotelDetails;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var Activation = "";
+    var IsHome = "";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            @ViewBag.Title @Model.Name
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-portlet__body">
+                <div class="m-portlet__body">
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#m_tabs_1_1">
+                                <i class="la la-exclamation-triangle"></i>
+                                @IsisTravelCore.Resources.Hotel.HotelDetails
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#m_tabs_1_2">
+                                <i class="la la-exclamation-circle m--font-success"></i>
+                                @IsisTravelCore.Resources.Hotel.Images
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
+                            <div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="Name" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="Name" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                        <label asp-for="HotelMainImage" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <img src="@Url.Content("~/uploads/"+Model.Country.Name+"/Hotels/"+Model.HotelMainImage)" width="200" />
+                                            <input type="hidden" asp-for="HotelMainImage" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="CountryId" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <select asp-for="CountryId" class="form-control select2" asp-items="ViewBag.CountryId" disabled="disabled"></select>
+                                        </div>
+                                        <label asp-for="CategoryId" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <select asp-for="CategoryId" class="form-control select2" asp-items="ViewBag.CategoryId" disabled="disabled"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="Phone" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="Phone" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                        <label asp-for="ExtelnalLink" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="ExtelnalLink" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="Address" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-8">
+                                            <textarea asp-for="Address" class="form-control m-input summernote" disabled="disabled"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="Description" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-8">
+                                            <textarea asp-for="Description" class="form-control m-input summernote" disabled="disabled"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="FacebookLink" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="FacebookLink" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                        <label asp-for="TwitterLink" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="TwitterLink" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label asp-for="Lat" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="Lat" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                        <label asp-for="Lang" class="col-form-label col-md-2"></label>
+                                        <div class="col-md-3">
+                                            <input asp-for="Lang" class="form-control m-input" disabled="disabled" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="m_tabs_1_2" role="tabpanel">
+                            <div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-form-label col-lg-3 col-sm-12">
+                                        @IsisTravelCore.Resources.Hotel.UploadImages
+                                    </label>
+                                    <div class="col-lg-4 col-md-9 col-sm-12">
+                                        <form asp-action="UploadHotelImages" asp-controller="Hotels" asp-route-id="@Model.Id" method="post" class="m-dropzone dropzone m-dropzone--success" id="m-dropzone-three" enctype="multipart/form-data">
+                                            <div class="form-group form-actions">
+                                                <div class="col-md-9 col-md-offset-4">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-floppy-o"></i> Upload</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <table class="table table-striped- table-bordered table-hover " id="HotelImages">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center">@IsisTravelCore.Resources.Hotel.Image</th>
+                                                <th style="text-align:center">@IsisTravelCore.Resources.Hotel.IsHome</th>
+                                                <th style="text-align:center">@IsisTravelCore.Resources.Hotel.Active</th>
+                                                <th style="text-align:center">@IsisTravelCore.Resources.Hotel.CreatedDate</th>
+                                                <th style="text-align:center">@IsisTravelCore.Resources.Hotel.LastModifiedDate</th>
+                                                <th style="text-align:center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.HotelImages.Where(t => t.Active))
+                                            {
+                                                <tr>
+                                                    <td style="text-align:center">
+                                                        <img src="@Url.Content("~/uploads/" + Model.Country.Name + "/Hotels/" + Model.Name + "/Images/" + item.Image)" width="80" class="img-circle" />
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        @Html.DisplayFor(modelItem => item.IsHome)
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        @Html.DisplayFor(modelItem => item.Active)
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        @Html.DisplayFor(modelItem => item.LastModifiedDate)
+                                                    </td>
+                                                    <td style="text-align:center">
+                                                        @if (item.Active)
+                                                        {
+                                                            Activation = IsisTravelCore.Resources.Genral.InActive;
+                                                        }
+                                                        else
+                                                        {
+                                                            Activation = IsisTravelCore.Resources.Genral.Active;
+                                                        }
+                                                        <a asp-action="ImageActivation" asp-route-id="@item.Id">@Activation</a>
+                                                        @if (item.IsHome)
+                                                        {
+                                                            IsHome = IsisTravelCore.Resources.Hotel.IsHome;
+                                                        }
+                                                        else
+                                                        {
+                                                            IsHome = IsisTravelCore.Resources.Hotel.NotHome;
+                                                        }
+                                                        <a asp-action="ImageHome" asp-route-id="@item.Id">@Activation</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">@IsisTravelCore.Resources.Genral.Edit</a>
+                                <a asp-action="Index" class="btn btn-secondary" asp-route-id="@Model.Id">@IsisTravelCore.Resources.Genral.Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var t = $("#HotelImages").DataTable({ "language": { "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json" }, scrollX: !0, });
+        });
+    </script>
+    <script>
+        $(function () {
+            Dropzone.options.dropzoneForm = {
+                paramName: "inputFiles", // The name that will be used to transfer the file
+                autoProcessQueue: true,
+                uploadMultiple: false,
+                parallelUploads: 100,
+                accept: function (file, done) {
+                    done();
+                }
+            };
+        });
+    </script>
+}

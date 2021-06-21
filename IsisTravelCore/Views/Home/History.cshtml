@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag["Title"] = IsisTravelCore.Resources.Home.History;
+}
+<div id="breadcrumb" class="clearfix">
+    <div class="container">
+        <div class="breadcrumb clearfix">
+            <h2 class="bread-title">@IsisTravelCore.Resources.Home.HomeNav  - @ViewBag["Title"] </h2>
+            <ul class="ul-breadcrumb">
+                <li><a asp-action="Index" asp-controller="Home" title="@IsisTravelCore.Resources.Home.HomeNav">@IsisTravelCore.Resources.Home.HomeNav</a></li>
+                <li><span>@ViewBag["Title"] </span></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- end breadcrumb -->
+<h1>@ViewBag["Title"] </h1>
+
+

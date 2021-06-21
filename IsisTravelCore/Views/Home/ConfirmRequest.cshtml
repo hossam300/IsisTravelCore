@@ -1,0 +1,102 @@
+﻿@model IsisTravelCore.Models.Domains.RequestOffer
+
+@{
+    ViewData["Title"] = "ConfirmRequest";
+}
+<section id="contact-us" class="t-p medida wow fadeInUp">
+    <div class="container wow fadeIn" data-wow-delay=".5s">
+        <table class="table">
+            <thead>
+                <tr class="adult">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Model.Date.ToString("dd-MM-yyyy")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @((Model.City == "1") ? "Barcelona" : "Madrid")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tour.TourName)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(model => model.Tour.TourName)
+                    </th>
+
+                </tr>
+            </thead>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>CONCEPTO</th>
+                    <th>IMPORTE</th>
+                    <th> UNID</th>
+                    <th> TOTAL </th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr>
+                    <td>
+                        @IsisTravelCore.Resources.Home.Adult
+                    </td>
+                    <th>  @(Model.TotalAdult / ((Model.AdultQuantity == 0) ? 1 : Model.AdultQuantity))  €</th>
+                    <td>
+                        @Html.DisplayFor(model => model.AdultQuantity)
+                    </td>
+                    <th>  @Html.DisplayFor(model => model.TotalAdult)  €</th>
+                </tr>
+                <tr class="shipping">
+                    <td>
+                        @IsisTravelCore.Resources.Home.Baby
+                    </td>
+                    <th>  @(Model.TotalBaby / ((Model.BabyQuantity == 0) ? 1 : Model.BabyQuantity))  €</th>
+                    <td>
+                        @Html.DisplayFor(model => model.BabyQuantity)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(model => model.TotalBaby)  €
+                    </th>
+                </tr>
+                <tr class="shipping"></tr>
+                <tr class="extra-room">
+                    <td>
+                        @IsisTravelCore.Resources.Home.ExtraRoom
+                    </td>
+                    <th>  @(Model.TotalExtraRoom / ((Model.ExtraRoomQuantity == 0) ? 1 : Model.ExtraRoomQuantity))  €</th>
+                    <td>
+                        @Html.DisplayFor(model => model.ExtraRoomQuantity)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(model => model.TotalExtraRoom)  €
+                    </th>
+                </tr>
+                <tr class="extra-room">
+                    <td colspan="3">
+                        @IsisTravelCore.Resources.Home.RoomType
+                    </td>
+                    <th>
+                        @Html.DisplayFor(model => model.RoomTypeVal)  €
+                    </th>
+                </tr>
+
+                <tr class="total">
+                    <th colspan="3">
+                        <strong>@IsisTravelCore.Resources.Home.Total</strong>
+                    </th>
+                    <th>
+                        <strong><span class="amount">  @Html.DisplayFor(model => model.Total)</span> €</strong>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align:right"> <a asp-action="Confirm" asp-controller="Home" asp-route-id="@Model.Id" class="btn btn-button btn-primary">@IsisTravelCore.Resources.Home.BookNow</a></div>
+    </div>
+</section>

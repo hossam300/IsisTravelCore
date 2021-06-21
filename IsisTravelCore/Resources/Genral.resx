@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="Activities" xml:space="preserve">
+    <value>Ocupaciones</value>
+  </data>
+  <data name="ActivityList" xml:space="preserve">
+    <value>Lista de actividades</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categorías</value>
+  </data>
+  <data name="CategoryDayPrice" xml:space="preserve">
+    <value>Categoría Día Precio</value>
+  </data>
+  <data name="CategoryList" xml:space="preserve">
+    <value>Lista de categoría</value>
+  </data>
+  <data name="CompanyUsers" xml:space="preserve">
+    <value>Usuarios de la empresa</value>
+  </data>
+  <data name="CompletedRequests" xml:space="preserve">
+    <value>Solicitudes Completadas</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Dupdo</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>países</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="CountryList" xml:space="preserve">
+    <value>País Lista</value>
+  </data>
+  <data name="CreateActivity" xml:space="preserve">
+    <value>Crear actividad</value>
+  </data>
+  <data name="CreateCategory" xml:space="preserve">
+    <value>Crear Categoría</value>
+  </data>
+  <data name="CreateCountry" xml:space="preserve">
+    <value>Crear País</value>
+  </data>
+  <data name="CreateHotel" xml:space="preserve">
+    <value>Crear hotel</value>
+  </data>
+  <data name="CreateInclude" xml:space="preserve">
+    <value>Crear Incluir</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Crear página</value>
+  </data>
+  <data name="CreateService" xml:space="preserve">
+    <value>Crear servicio</value>
+  </data>
+  <data name="CreateSlideShow" xml:space="preserve">
+    <value>Crear presentación de diapositivas</value>
+  </data>
+  <data name="CreateTour" xml:space="preserve">
+    <value>Crear Tour</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Excel" xml:space="preserve">
+    <value>Sobresalir</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="ExportTools" xml:space="preserve">
+    <value>Herramientas de exportación</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Caracteristicas</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hola</value>
+  </data>
+  <data name="HotelList" xml:space="preserve">
+    <value>Lista de hoteles</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hoteles</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="IncludeList" xml:space="preserve">
+    <value>Incluir lista</value>
+  </data>
+  <data name="Includes" xml:space="preserve">
+    <value>Incluye</value>
+  </data>
+  <data name="IsisTravel" xml:space="preserve">
+    <value>alas de Isis</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="PageList" xml:space="preserve">
+    <value>Lista de páginas</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Páginas</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Impresión</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Peticiones</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="ServiceList" xml:space="preserve">
+    <value>Lista de servicios</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Servicios</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Registrarse en alas de Isis</value>
+  </data>
+  <data name="SlideShowList" xml:space="preserve">
+    <value>Lista de diapositivas</value>
+  </data>
+  <data name="SlideShows" xml:space="preserve">
+    <value>Presentaciones de diapositivas</value>
+  </data>
+  <data name="TourList" xml:space="preserve">
+    <value>Lista de ofrece</value>
+  </data>
+  <data name="Tours" xml:space="preserve">
+    <value>ofrece</value>
+  </data>
+</root>

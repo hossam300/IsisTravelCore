@@ -1,0 +1,117 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+@{ var Activation = "";}
+<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <label class="col-form-label col-lg-3 col-sm-12">
+            @IsisTravelCore.Resources.Tour.TourCategories
+        </label>
+        <div class="col-lg-4 col-md-9 col-sm-12">
+        </div>
+    </div>
+    <form method="post" id="CategoryTour-Form" action="#" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+        <div class="form-group m-form__group row">
+            <input type="hidden" id="TourCategoryId" />
+            <input type="hidden" id="Category" />
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.Name</label>
+            <div class="col-md-4">
+                <input id="CategoryId" name="CategoryId" class="form-control  m-input" />
+                @*<select id="CategoryId" name="CategoryId" class="form-control  m-input select2" style="width:100%" asp-items="ViewBag.CategoryId"></select>*@
+            </div>
+
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.Days</label>
+            <div class="col-md-4">
+                <select id="Days" name="Days" class="form-control m-input select2" asp-items="Html.GetEnumSelectList<DaysEs>()" multiple style="width:100%">
+                </select>
+            </div>
+            <span class="text-danger col-md-2" id="CategoryVaildation"></span>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.City</label>
+            <div class="col-md-4">
+                <select id="Cities" name="Cities" class="form-control m-input select2" style="width:100%">
+                    <option value="1">Barcelona</option>
+                    <option value="2">Madrid</option>
+                </select>
+            </div>
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.AdultPrice</label>
+            <div class="col-md-4">
+                <input id="AdultPrice" name="AdultPrice" class="form-control m-input" style="width:100%" />
+            </div>
+            <span class="text-danger col-md-2" id="AdultPriceVaildation"></span>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.ChildPrice</label>
+            <div class="col-md-4">
+                <input id="ChildPrice" name="ChildPrice" class="form-control m-input" style="width:100%" />
+            </div>
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.BabyPrice</label>
+            <div class="col-md-4">
+                <input id="BabyPrice" name="BabyPrice" class="form-control m-input" style="width:100%" />
+            </div>
+            <span class="text-danger col-md-2" id="BabyPriceVaildation"></span>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.SingleRoomExtrafees</label>
+            <div class="col-md-4">
+                <input id="SingleRoomExtrafees" name="SingleRoomExtrafees" class="form-control m-input" style="width:100%" />
+            </div>
+            <span class="text-danger col-md-2" id="SingleRoomExtrafeesVaildation"></span>
+            <div class="col-md-4">
+                <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" id="saveCategoryTour" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+    <div class="form-group m-form__group row">
+
+        <table class="table table-striped- table-bordered table-hover table-checkable responsive" id="ToursCategory">
+            <thead>
+                <tr>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.Name</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.City</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.AdultPrice</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.ChildPrice</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.BabyPrice</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Category.SingleRoomExtrafees</th>
+                    <th style="text-align:center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TourCategories.Where(t => t.Active).OrderBy(c=>c.Category.Name))
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            <a asp-action="CategoryDayTour" asp-route-id="@item.Id">   @Html.DisplayFor(modelItem => item.Category.Name)</a>
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.City.Name)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.CategoryDayPrices[0].AdultPrice)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.CategoryDayPrices[0].ChildPrice)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.CategoryDayPrices[0].BabyPrice)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.CategoryDayPrices[0].SingleRoomExtrafees)
+                        </td>
+                        <td style="text-align:center">
+                            @if (item.Active)
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.InActive;
+                            }
+                            else
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.Active;
+                            }
+                            <a asp-action="CategoriesActivation" asp-route-id="@item.Id">@Activation</a>
+                            <button class="btn btn-link CategoriesEdit" id="CategoriesEdit_@item.Id" data-id="@item.Id">@IsisTravelCore.Resources.Genral.Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "SendMail";
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <script src="~/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            swal({
+                title: "reserva completada!",
+                text: "Por favor revise su correo electrónico",
+                icon: "success",
+                button: "Buena!"
+            }).then(() => {
+                location.replace("/");
+            });
+        });
+    </script>
+</body>
+</html>
+
+ 

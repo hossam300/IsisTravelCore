@@ -1,0 +1,38 @@
+﻿@model IsisTravelCore.Models.Domains.Country
+
+@{
+    var cultureInfo = new System.Globalization.CultureInfo("es-CL");
+    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+}
+<section id="contact-us" class="t-p medida wow fadeInUp">
+    <div class="container wow fadeIn" data-wow-delay=".5s">
+        <div class="row">
+            <!-- container -->
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model.Tours)
+                    {
+                        <div class="block col-lg-4">
+                            <img src="@Url.Content("~/uploads/" + item.Country.Name + "/Tours/" + item.TourMainImage)">
+                            <div class="overlay">
+                                <h2>@Model.Name</h2>
+                                <h3> @item.TourName</h3>
+                                <div class="content_price">
+                                    <span>
+                                        <span class="price product-price">@item.Price € </span>
+                                        <span class="old-price product-price">@item.OldPrice € </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overlay2"></div>
+                            <div class="button">
+                                <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div> <!-- end container -->
+        </div>
+        </div><!--end columns-->
+</section>

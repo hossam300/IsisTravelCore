@@ -1,0 +1,82 @@
+﻿@model IsisTravelCore.Models.Domains.Hotel
+@{
+    ViewBag["Title"] = IsisTravelCore.Resources.Home.Hotels;
+    var cssclass = "";
+}
+<div id="breadcrumb" class="clearfix">
+    <div class="container">
+        <div class="breadcrumb clearfix">
+            <h2 class="bread-title">@IsisTravelCore.Resources.Home.HomeNav  - @ViewBag["Title"] </h2>
+            <ul class="ul-breadcrumb">
+                <li><a asp-action="Index" asp-controller="Home" title="@IsisTravelCore.Resources.Home.HomeNav">@IsisTravelCore.Resources.Home.HomeNav</a></li>
+                <li><span>@ViewBag["Title"] </span></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- end breadcrumb -->
+
+
+<div id="columns" class="columns-container" style="background-color: #f8f3f2;">
+    <!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="pb-left-column col-xs-12 col-sm-12 col-md-12">
+                <div id="image-block" class="clearfix">
+                    <div id="view_full_size">
+                        @if (Model.HotelImages.Count > 0)
+                        {
+                            <img src="@Url.Content("~/uploads/"+Model.Country.Name+"/Hotels/"+Model.HotelImages[0].Image)" alt="@Model.Name" class="img-responsive" width="1000" height="665">
+                        }
+                    </div>
+                </div><!-- end #image-block -->
+                @if (Model.HotelImages.Count > 0)
+                {
+                    <div id="views_block" class="clearfix">
+                        <div id="thumbs_list">
+                            <ul id="thumbs_list_frame" class="list-inline">
+                                @for (int i = 0; i < Model.HotelImages.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        cssclass = "first active";
+                                    }
+                                    else if (i == Model.HotelImages.Count - 1)
+                                    {
+                                        cssclass = "last";
+                                    }
+                                    <li class="@cssclass">
+                                        <img src="@Url.Content("~/uploads/"+Model.Country.Name+"/Hotels/"+Model.HotelImages[i].Image)" alt="@Model.Name" class="img-responsive" width="180" height="120">
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div><!-- end views_block -->
+                }
+            </div><!-- end pb-left-column -->
+        </div>
+    </div>
+</div>
+<div class="pb-center-column col-xs-12 col-sm-12 col-md-12">
+    <table class="table table-responsive">
+        <tbody>
+            <tr>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.Name</label></td>
+                <td>@Model.Name</td>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.Country</label></td>
+                <td>@Model.Country.Name</td>
+            </tr>
+            <tr>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.Description</label></td>
+                <td>@Model.Description</td>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.Address</label></td>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.Phone</label></td>
+                <td>@Model.Phone</td>
+                <td><label class="control-label">@IsisTravelCore.Resources.Hotel.FacebookLink</label></td>
+                <td>@Model.FacebookLink</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+﻿@model IsisTravelCore.Models.Domains.IsisPage
+
+@{
+    ViewData["Title"] = "PageDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="contact-us" class="t-p medida wow fadeInUp">
+    <div class="container wow fadeIn" data-wow-delay=".5s">
+        <h2> @Model.Title</h2>
+        <p>
+            @Html.Raw(Model.Description)
+        </p>
+    </div>
+</section>

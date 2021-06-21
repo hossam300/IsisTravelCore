@@ -1,0 +1,225 @@
+﻿@model IsisTravelCore.Models.CategoryDayPricesVM
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Precio del dia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--begin::Portlet-->
+                <div class="m-portlet" id="m_portlet">
+                    <div class="m-portlet__body">
+                        <div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                            <div class="form-group m-form__group row">
+                                <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Tour.TourName :</label>
+                                <div class="col-md-4">
+                                    <select id="Tours" name="Tours" class="form-control select2" asp-items="ViewBag.Tours">
+                                        <option value="">Select Tour</option>
+                                    </select>
+                                </div>
+                                <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Category.Name :</label>
+                                <div class="col-md-4">
+                                    <select id="Category" name="Category" class="form-control select2"></select>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div id="Pricecalendar"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_AddDayPrice" model="@Model.DayPrice" />
+@section Scripts{
+    <script>
+        var Model= @Html.Raw(JsonConvert.SerializeObject(Model.CategoryDayPrices)),
+        TourCatrgoryId=@Html.Raw(JsonConvert.SerializeObject(Model.DayPrice.TourCategoryId));
+    </script>
+    <script>
+        $("#Tours").on('change', function () {
+            $("#Category").empty();
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'Get',
+                url: "/Tours/GetCategoryByTourId/?id=" + $("#Tours").val(),
+                success: function (data) {
+                    $("#Category").append($('<option/>').val(0).text('selecciona una categoría'));
+                    $.each(data, function (i, val) {
+                        $("#Category").append($('<option/>').val(val.value).text(val.text));
+                    });
+                },
+                error: function (xhr) { console.log(xhr.error); }
+            });
+        });
+        $("#Category").on('change', function () {
+            getCalender($("#Category").val());
+        });
+        $('#DayCategoriesmodal').on('hidden.bs.modal', function () {
+            $("#DayId").val("");
+            $("#Date").val("");
+            $("#AdultPrice").val("");
+            $("#ChildPrice").val("");
+            $("#BabyPrice").val("");
+        });
+        $('#DayCategories-Form').submit(function (e) {
+            e.preventDefault();
+            var events = $('#Pricecalendar').fullCalendar('clientEvents');
+            for (var i = 0; i < events.length; i++) {
+                if (moment($("#Date").val(), "DD-MM-YYYY").isSame(moment(events[i].start, "DD-MM-YYYY"))) {
+                    $("#DayId").val(events[i].id);
+                    break;
+                }
+
+            }
+            if ($('#DayCategories-Form').valid()) {
+                var DayPrice = {
+                    Date: $("#Date").val(),
+                    AdultPrice: $("#AdultPrice").val(),
+                    ChildPrice: $("#ChildPrice").val(),
+                    BabyPrice: $("#BabyPrice").val(),
+                    TourCategoryId: $("#DayCategoryId").val(),
+                    Id: $("#DayId").val() ? $("#DayId").val() : "0"
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/Tours/AddDayPrice/",
+                    data: { "DayPrice": DayPrice },
+                    success: function (result) {
+                        swal({
+                            title: "Precio del dia !",
+                            text: "Precio del dia agregada para recorrer con éxito",
+                            type: "success",
+                        });
+
+                        getCalender($("#Category").val());
+                        $("#DayCategoriesmodal").modal('hide');
+                    },
+                    error: function () {
+                        swal({
+                            title: "Precio del dia !",
+                            text: "Algo mal por favor intente de nuevo",
+                            type: "error",
+                        });
+                    }
+                });
+            }
+            else {
+                e.preventDefault();
+            }
+        });
+        function getCalender(id) {
+            $("#Pricecalendar").fullCalendar('destroy');
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'Get',
+                url: "/Tours/TCategoryDays/?id=" + id,
+                success: function (result) {
+                    var e = moment().startOf("day"),
+                        t = e.format("YYYY-MM"), i = e.clone().subtract(1, "day").format("YYYY-MM-DD"),
+                        n = e.format("YYYY-MM-DD"), r = e.clone().add(1, "day").format("YYYY-MM-DD");
+                    $("#DayCategoryId").val($("#Category").val());
+                    $("#Pricecalendar").fullCalendar(
+                        {
+                            header: { left: "prev,next today", center: "title", right: "month,agendaWeek,agendaDay,listWeek" },
+                            editable: !0, eventLimit: !0, navLinks: !0, locale: 'es',
+                            events: result.categoryDayPrices,
+                            eventRender: function (e, t) {
+                                t.hasClass("fc-day-grid-event") ? (t.data("content", e.description),
+                                    t.data("placement", "top"),
+                                    mApp.initPopover(t)) : t.hasClass("fc-time-grid-event") ? t.find(".fc-title").append('<div class="fc-description">' + e.description + "</div>") : 0 !== t.find(".fc-list-item-title").lenght && t.find(".fc-list-item-title").append('<div class="fc-description">' + e.description + "</div>")
+                            },
+                            dayClick: function (date, jsEvent, view, resourceObj) {
+                                var events = $('#Pricecalendar').fullCalendar('clientEvents');
+                                var currentEvent;
+                                for (var i = 0; i < events.length; i++) {
+                                    var datemom = moment.utc(date).format('L');
+                                    var startevent = moment.utc(events[i].start).format('L');
+                                    if (moment(datemom).isSame(moment(startevent))) {
+                                        currentEvent = events[i];
+                                        break;
+                                    }
+
+                                }
+                                if (currentEvent != null) {
+                                    $.ajax({
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: 'json',
+                                        type: 'Get',
+                                        url: "/Tours/GetDayDetails/?id=" + currentEvent.id,
+                                        success: function (result) {
+                                            var date = result.date.split("T")[0];
+                                            var DateArr = date.split("-");
+                                            var month = DateArr[1];
+                                            $("#Date").val((month) + "-" + (DateArr[2]) + "-" + DateArr[0]);
+                                            $("#AdultPrice").val(result.adultPrice);
+                                            $("#ChildPrice").val(result.childPrice);
+                                            $("#BabyPrice").val(result.babyPrice);
+                                            $("#DayId").val(currentEvent.id);
+
+
+                                        },
+                                        error: function () {
+                                            swal({
+                                                title: "Precio del dia !",
+                                                text: "Algo mal por favor intente de nuevo",
+                                                type: "error",
+                                            });
+                                        }
+                                    });
+
+                                } else {
+                                    var month = date.month() + 1;
+                                    $("#Date").val(("0" + (month)).slice(-2) + "-" + ("0" + (date.date())).slice(-2) + "-" + date.year());
+                                }
+
+                                $("#DayCategoriesmodal").modal('show');
+                            },
+                            eventClick: function (calEvent, jsEvent, view) {
+                                $("#DayId").val(calEvent.id);
+                                $.ajax({
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: 'json',
+                                    type: 'Get',
+                                    url: "/Tours/GetDayDetails/?id=" + calEvent.id,
+                                    success: function (result) {
+                                        var date = result.date.split("T")[0];
+                                        var DateArr = date.split("-");
+                                        var month = DateArr[1];
+                                        $("#Date").val((month) + "-" + (DateArr[2]) + "-" + DateArr[0]);
+                                        $("#AdultPrice").val(result.adultPrice);
+                                        $("#ChildPrice").val(result.childPrice);
+                                        $("#BabyPrice").val(result.babyPrice);
+                                        $("#DayId").val(calEvent.id);
+
+                                    },
+                                    error: function () {
+                                        swal({
+                                            title: "Precio del dia !",
+                                            text: "Algo mal por favor intente de nuevo",
+                                            type: "error",
+                                        });
+                                    }
+                                });
+
+                                $("#DayCategoriesmodal").modal('show');
+                            }
+                        })
+                },
+                error: function (xhr) { console.log(xhr.error); }
+            });
+        }
+    </script>
+}
+
+

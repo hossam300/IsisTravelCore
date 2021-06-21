@@ -1,0 +1,69 @@
+﻿@model IsisTravelCore.Models.Domains.Service
+
+
+@{
+    ViewBag.Title = IsisTravelCore.Resources.Service.CreateService;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            @ViewBag.Title
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <form asp-action="Create" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                <div class="m-portlet__body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group m-form__group row">
+                        <label asp-for="Name" class="col-form-label col-md-2"></label>
+                        <div class="col-md-3">
+                            <input asp-for="Name" class="form-control m-input" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Price" class="col-form-label col-md-2"></label>
+                        <div class="col-md-3">
+                            <input asp-for="Price" class="form-control m-input" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label asp-for="Description" class="col-form-label col-md-2"></label>
+                        <div class="col-md-8">
+                            <textarea asp-for="Description" class="form-control m-input summernote"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" class="btn btn-primary" />
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    @IsisTravelCore.Resources.Genral.Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

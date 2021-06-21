@@ -1,0 +1,8 @@
+﻿.vuelos {
+    float: left;
+    display: block;
+    background: url(http://www.karnaktravels.com/template/Karnak/imagenes/spriteResumen.png);
+    width: 20px;
+    height: 20px;
+    margin: 0px 4px 10px;
+}

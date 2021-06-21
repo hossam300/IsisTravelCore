@@ -1,0 +1,109 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+
+@{
+    ViewBag.Title = IsisTravelCore.Resources.Tour.TourDetails;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var Activation = "";
+    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-CL");
+    System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-CL");
+    //  var SlideShow = "";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            @ViewBag.Title @Model.TourName
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-portlet__body">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#m_tabs_1_1">
+                            <i class="la la-exclamation-triangle"></i>
+                            @IsisTravelCore.Resources.Tour.TourDetails
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#m_tabs_1_2">
+                            <i class="la la-exclamation-circle m--font-success"></i>
+                            @IsisTravelCore.Resources.Tour.TourImages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#m_tabs_1_3">
+                            <i class="la la-exclamation-circle m--font-success"></i>
+                            @IsisTravelCore.Resources.Tour.TourCategories
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#m_tabs_1_4">
+                            <i class="la la-cloud-download"></i>
+                            @IsisTravelCore.Resources.Tour.TourActivity
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#m_tabs_1_5">
+                            <i class="la la-cloud-download"></i>
+                            @IsisTravelCore.Resources.Tour.TourInclude
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#m_tabs_1_6">
+                            <i class="la la-cloud-download"></i>
+                            @IsisTravelCore.Resources.Tour.TourQuot
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
+                        <partial name="_TourDetails" model="Model" />
+                    </div>
+                    <div class="tab-pane" id="m_tabs_1_2" role="tabpanel">
+                        <partial name="_TourImages" model="Model" />
+                    </div>
+                    <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
+                        <partial name="_TourCategories" model="Model" />
+                    </div>
+                    <div class="tab-pane" id="m_tabs_1_4" role="tabpanel">
+                        <partial name="_TourActivity" model="Model" />
+                    </div>
+                    <div class="tab-pane" id="m_tabs_1_5" role="tabpanel">
+                        <partial name="_TourInclude" model="Model" />
+                    </div>
+                    <div class="tab-pane" id="m_tabs_1_6" role="tabpanel">
+                        <partial name="_TourQuot" model="Model" />
+                    </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                                    @IsisTravelCore.Resources.Genral.Edit
+                                </a>
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    @IsisTravelCore.Resources.Genral.Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Form-->
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/Pages/TourDetails.js"></script>
+}

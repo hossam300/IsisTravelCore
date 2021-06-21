@@ -1,0 +1,276 @@
+/*------------------------------------------------------------------
+[Product List Stylesheet]
+
+Template Name  	: Unisa
+Description 	: Unisa Responsive HTML Template
+Author      	: TivaTheme
+Version     	: 1.0
+Created     	: 15/09/2018
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Product List
+2. Product Grid
+
+-------------------------------------------------------------------*/
+
+
+/**
+ * 1. Product List
+ */
+.product-container {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  background-color: #FFFFFF;
+  /* product style 2 */ }
+  .product-container .left-block {
+    position: relative; }
+  .product-container .right-block {
+    position: relative; }
+  .product-container .product-box {
+    padding: 5px 30px 0; }
+  .product-container .label {
+    position: absolute;
+    top: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    color: #FFFFFF;
+    line-height: 10px;
+    min-width: 40px;
+    text-align: center;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+    border-radius: 0.2rem; }
+  .product-container .label-new {
+    top: 50px;
+    right: 25px;
+    background: #77c66d; }
+    .rtl .product-container .label-new {
+      left: 25px;
+      right: auto; }
+  .product-container .label-sale {
+    top: 50px;
+    left: 25px;
+    background-color: #ff3333; }
+    .rtl .product-container .label-sale {
+      right: 25px;
+      left: auto; }
+  .product-container .label-reduction {
+    left: 25px;
+    background-color: #ff3333; }
+    .rtl .product-container .label-reduction {
+      right: 25px;
+      left: auto; }
+  .product-container .label-activity {
+    right: 25px;
+    background-color: #FFFFFF;
+    color: #000000; }
+    .rtl .product-container .label-activity {
+      left: 25px;
+      right: auto; }
+  .product-container .content_price {
+    margin: 0 0 5px; }
+  .product-container .price {
+    color: #ff3333;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif; }
+  .product-container .price-old, .product-container .old-price {
+    color: #ababab;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: line-through; }
+  .product-container .name {
+    height: 25px;
+    overflow: hidden;
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif; }
+    .product-container .name a {
+      color: #2d2f34;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+      line-height: 21px;
+      display: -moz-inline-stack;
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      zoom: 1;
+      *display: inline; }
+      .product-container .name a:hover {
+        color: #0b83fe; }
+  .product-container .product-image-container {
+    position: relative;
+    margin-bottom: 26px;
+    text-align: center; }
+  .product-container .box-buttons {
+    position: absolute;
+    bottom: -25px;
+    width: 50px;
+    right: 25px; }
+    .rtl .product-container .box-buttons {
+      left: 25px;
+      right: auto; }
+    .product-container .box-buttons .btn {
+      padding: 0;
+      border: none;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #FFFFFF;
+      display: inline-block;
+      font-size: 18px;
+      color: #2d2f34;
+      line-height: 50px;
+      width: 50px;
+      height: 50px;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -ms-border-radius: 100%;
+      -o-border-radius: 100%;
+      border-radius: 100%;
+      -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); }
+      .product-container .box-buttons .btn:hover {
+        color: #FFFFFF;
+        background-color: #0b83fe; }
+    .product-container .box-buttons i {
+      line-height: 35px; }
+  .product-container .addToWishlist {
+    padding: 0;
+    color: #cccccc;
+    margin-top: 10px; }
+    .product-container .addToWishlist:hover, .product-container .addToWishlist:focus, .product-container .addToWishlist:active {
+      color: #0b83fe;
+      border-color: #FFFFFF;
+      background-color: transparent;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none; }
+  .product-container .tour-days {
+    color: #999999;
+    margin-bottom: 20px; }
+    .product-container .tour-days .icon {
+      color: #0b83fe;
+      font-size: 20px;
+      display: inline-block;
+      margin-right: 10px; }
+      .rtl .product-container .tour-days .icon {
+        margin-left: 10px;
+        margin-right: inherit; }
+  .product-container.product-style2 {
+    padding: 25px 30px;
+    width: 100%;
+    float: left; }
+    .rtl .product-container.product-style2 {
+      float: right; }
+    .product-container.product-style2 .name {
+      margin: 0 0 24px; }
+    .product-container.product-style2 .left-block, .product-container.product-style2 .right-block {
+      width: 50%;
+      float: left; }
+      .rtl .product-container.product-style2 .left-block, .rtl .product-container.product-style2 .right-block {
+        float: right; }
+    .product-container.product-style2 .product-box {
+      padding: 0 0 0 30px; }
+      .rtl .product-container.product-style2 .product-box {
+        padding: 0 30px 0 0; }
+    .product-container.product-style2 .tour-days {
+      color: #0b83fe;
+      margin-bottom: 15px; }
+      .product-container.product-style2 .tour-days .icon {
+        font-size: 18px;
+        color: #2d2f34; }
+    .product-container.product-style2 .description p {
+      line-height: 24px; }
+    .product-container.product-style2 .price {
+      font-size: 16px; }
+    .product-container.product-style2 .old-price {
+      font-size: 13px; }
+    .product-container.product-style2 .bottom-block {
+      width: 100%;
+      padding-top: 20px;
+      border-top: 1px solid #e5e5e5;
+      float: left; }
+      .rtl .product-container.product-style2 .bottom-block {
+        float: right; }
+      .product-container.product-style2 .bottom-block .pull-left {
+        padding-top: 7px; }
+      .product-container.product-style2 .bottom-block .label-activity,
+      .product-container.product-style2 .bottom-block .label-minage {
+        font-weight: 700;
+        margin-right: 18px; }
+        .rtl .product-container.product-style2 .bottom-block .label-activity, .rtl
+        .product-container.product-style2 .bottom-block .label-minage {
+          margin-left: 18px;
+          margin-right: inherit; }
+        .product-container.product-style2 .bottom-block .label-activity span,
+        .product-container.product-style2 .bottom-block .label-minage span {
+          font-size: 20px;
+          color: #0b83fe;
+          display: inline-block;
+          margin-right: 5px; }
+          .rtl .product-container.product-style2 .bottom-block .label-activity span, .rtl
+          .product-container.product-style2 .bottom-block .label-minage span {
+            margin-left: 5px;
+            margin-right: inherit; }
+      .product-container.product-style2 .bottom-block .label-minage {
+        display: inline-block;
+        margin-right: 0; }
+        .rtl .product-container.product-style2 .bottom-block .label-minage {
+          margin-left: 0;
+          margin-right: inherit; }
+      .product-container.product-style2 .bottom-block .btn {
+        padding: 10px 30px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+        float: right; }
+        .rtl .product-container.product-style2 .bottom-block .btn {
+          float: left; }
+      .product-container.product-style2 .bottom-block .p-left {
+        float: left; }
+        .rtl .product-container.product-style2 .bottom-block .p-left {
+          float: right; }
+      .product-container.product-style2 .bottom-block .p-right {
+        float: right; }
+        .rtl .product-container.product-style2 .bottom-block .p-right {
+          float: left; }
+
+
+/**
+ * 2. Product Grid
+ */
+#tiva-grid .product-container {
+  margin-bottom: 30px; }
+
+#tiva-list .product-container {
+  padding-bottom: 0;
+  background-color: transparent;
+  text-align: left; }
+  .rtl #tiva-list .product-container {
+    text-align: right; }
+  #tiva-list .product-container .product-image-container {
+    margin-bottom: 0; }
+  #tiva-list .product-container .tour-days {
+    margin-bottom: 7px; }
+  #tiva-list .product-container.product-style2 {
+    padding: 30px;
+    background-color: #FFFFFF; }
+    #tiva-list .product-container.product-style2 .left-block,
+    #tiva-list .product-container.product-style2 .right-block {
+      width: 100%; }
+    #tiva-list .product-container.product-style2 .content_price {
+      margin: 0 0 20px; }
+
+#tiva-list .product-box {
+  padding: 0; }
+
+#tiva-list .product-des {
+  margin-bottom: 7px; }

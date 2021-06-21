@@ -1,0 +1,153 @@
+﻿@model IsisTravelCore.Models.CategoryDayPricesVM
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Precio del dia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @IsisTravelCore.Resources.Tour.TourName: @ViewBag.Tour
+                </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                @IsisTravelCore.Resources.Category.Name
+                            </span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        :
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                @ViewBag.Category
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--begin::Portlet-->
+                <div class="m-portlet" id="m_portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon">
+                                    <i class="flaticon-map-location"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    @ViewBag.Title
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+                                    <a data-toggle="modal" href="#DayCategoriesmodal" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="la la-plus"></i>
+                                            <span>
+                                                @IsisTravelCore.Resources.Tour.AddDayPrice
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-portlet__nav-item">
+                                    <a href="@Url.Action("Details","Tours",new { id=ViewBag.TourId,area="Admin"})" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            @IsisTravelCore.Resources.Genral.Cancel
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div id="m_calendar"></div>
+                    </div>
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_AddDayPrice" model="@Model.DayPrice" />
+@section Scripts{
+    <script src="~/assets/demo/default/custom/components/calendar/basic.js" type="text/javascript"></script>
+    <script>
+        var Model= @Html.Raw(JsonConvert.SerializeObject(Model.CategoryDayPrices)),
+        TourCatrgoryId=@Html.Raw(JsonConvert.SerializeObject(Model.DayPrice.TourCategoryId));
+    </script>
+    <script>
+        $('#DayCategoriesmodal').on('hidden.bs.modal', function () {
+            $("#DayId").val("");
+            $("#Date").val("");
+            $("#AdultPrice").val("");
+            $("#ChildPrice").val("");
+            $("#BabyPrice").val("");
+        });
+        $('#DayCategories-Form').submit(function (e) {
+            e.preventDefault();
+            var events = $('#Pricecalendar').fullCalendar('clientEvents');
+            for (var i = 0; i < events.length; i++) {
+                var datemom = moment.utc(date).format('L');
+                var startevent = moment.utc(events[i].start).format('L');
+                if (moment(datemom).isSame(moment(startevent))) {
+                    $("#DayId").val(events[i].id);
+                    break;
+                }
+
+            }
+            if ($('#DayCategories-Form').valid()) {
+                var DayPrice = {
+                    Date: $("#Date").val(),
+                    AdultPrice: $("#AdultPrice").val(),
+                    ChildPrice: $("#ChildPrice").val(),
+                    BabyPrice: $("#BabyPrice").val(),
+                    TourCategoryId: $("#DayCategoryId").val(),
+                    Id: $("#DayId").val() ? $("#DayId").val() : "0"
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/Tours/AddDayPrice/",
+                    data: { "DayPrice": DayPrice },
+                    success: function (result) {
+                        swal({
+                            title: "Precio del dia !",
+                            text: "Precio del dia agregada para recorrer con éxito",
+                            type: "success",
+                        });
+
+                        location.reload();
+                    },
+                    error: function () {
+                        swal({
+                            title: "Precio del dia !",
+                            text: "Algo mal por favor intente de nuevo",
+                            type: "error",
+                        });
+                    }
+                });
+            }
+            else {
+                e.preventDefault();
+            }
+        });
+
+    </script>
+}
+
+

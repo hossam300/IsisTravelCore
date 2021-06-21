@@ -1,0 +1,298 @@
+/*************************
+*******MEDIA QUERY******
+**************************/
+
+@media (max-width: 1200px) {
+
+ 
+}
+
+
+@media (max-width: 992px) {
+.none{
+    display: none
+}
+.login-page .col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.home h1 {
+    font-size: 32px;
+}
+
+.home ,.w-100{
+    height: 360px;
+}
+.carousel-inner .button .nav-link {
+     padding: 6px 26px;
+    font-size: 14px;
+}
+
+.carousel-inner h3 {
+    font-size: 42px;
+}
+
+.home p {
+   font-size: 21px;
+ 
+}
+ .titile-logo{
+
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: auto;
+    width: 100%;
+    text-align: center;
+    opacity: 1 !important; }
+ .logo-navbar{
+     display: none !important
+ }
+ .bg-light {
+    background:linear-gradient(-90deg, rgb(94, 116, 197), rgb(110, 171, 64)) !important;
+    z-index: 9999;
+}
+
+.navbar-collapse{
+    margin-top: 11px;
+    margin-left: -16px;
+    background: rgb(255, 255, 255);
+    border: 1px solid;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+    border-color:#fff;
+    background: #fff;
+    z-index: 9999999999;
+
+}
+.navbar-toggler{
+    background: #fff
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+    color: rgb(146, 128, 85) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #252525 !important;
+}
+.carousel-control-prev-icon,.carousel-control-next{
+    display: none
+}
+.best-offers p{
+    font-size: 16px;
+}
+.best-offers h2{
+    font-size: 26px;
+}
+.block{
+    width: 50%;
+}
+.Features h2{
+    font-size: 32px;
+}
+.fea-icon{
+    margin-bottom: 49px;
+}
+
+
+.fea-icon h3 {
+    font-weight: 700;
+    font-size: 23px;
+} 
+.fea-icon .button .nav-link {
+     width: 150px;
+}
+.img-city{
+    width: 50%;
+}
+.best-city img {
+    width: 94%;
+}
+
+.custom-icom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.travel{
+    height: 100%;
+}
+
+
+.text-trael h1 { 
+    font-size: 35px;
+}
+.custom-contact{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 41px;
+}
+.contact{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+}
+.contact h3{
+
+    font-size: 32px;
+    padding-top: 0;
+    margin-bottom: 10px;
+}
+.footer{
+    height: 100%;
+    padding-bottom: 61px;
+    padding-top: 91px;
+}
+.footer .container-fluid{
+    flex-direction: column-reverse;
+}
+.footer .col-lg-4{
+    align-items: flex-start;
+}
+.medida h2 {
+    font-size: 31px;
+}
+
+.text-offer h6 { 
+    font-size: 21px;
+}
+
+
+.select-oofer { 
+    padding: 34px 46px;
+}
+.tab-links ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0
+}
+.tab-panel 
+.col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.margin-topp{
+    flex-direction: column;
+}
+.medida .row{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.col-md-7 { 
+    max-width: 100%;
+}
+.all-photo{
+    height: 420px;
+    width: 100%;
+    padding-right: 26px
+
+}
+}
+@media (max-width: 767px) {
+
+.medida h2 {
+    font-size: 26px;
+}
+    .tab-content{
+        padding: 0
+    }
+    .img-city{
+        width: 100%;
+    }
+.best-offers .row{
+    flex-direction: column;
+}
+
+.block {
+    width: 100%;
+}
+
+
+.medida h4 {
+    color: #809f83;
+    font-size: 23px;
+}
+
+}
+@media (max-width: 650px) {
+
+    .best-offers h2 {
+        font-size: 23px;
+    }
+
+.best-offers p {
+    font-size: 14px;
+}
+
+    .carousel-inner .button { 
+        margin-top: -60px;
+    }    
+
+.carousel-inner h3 {
+    font-size: 31px;
+    margin-left: 43px;
+    margin-top: -9px;
+}
+.home h1 {
+    font-size: 29px;
+}
+.home p {
+    font-size: 19px;
+}
+.home ,.w-100{
+    height: 290px;
+}
+
+.copy-right p{
+    font-size: 14px;
+}
+.footer img{
+    width: 74%;
+}
+.custom-footer p{
+    font-size: 14px
+}
+
+}
+
+
+@media (max-width: 512px) {
+    .text-offer{
+        flex-direction: column;
+    }
+    .text-offer h6{
+        width: 140px;
+    }
+
+
+    .form-sign img {
+        width: 80%;
+    }
+
+.carousel-inner h3 {
+    font-size: 26px;}
+    
+.carousel-inner .button {
+    margin-top: -52px;
+}
+
+.carousel-inner .button .nav-link {
+    padding: 4px 20px;
+}
+
+}
+
+@media (max-width: 370px) {}

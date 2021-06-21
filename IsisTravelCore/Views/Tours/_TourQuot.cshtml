@@ -1,0 +1,50 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+<form method="post" id="Quote-Form" action="#" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <input type="hidden" id="TourQuoteId" />
+        <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Service.QuoteName</label>
+        <div class="col-md-4">
+            <input id="QuoteName" name="QuoteName" class="form-control  m-input" />
+        </div>
+        <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Service.Price</label>
+        <div class="col-md-4">
+            <input id="QuotePrice" name="QuotePrice" class="form-control  m-input" />
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <span class="text-danger col-md-2" id="QuoteVaildation"></span>
+        <div class="col-md-2">
+            <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" id="saveIncludeTour" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <table class="table table-striped- table-bordered table-hover table-checkable responsive" id="TourQuotes">
+            <thead>
+                <tr>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Service.QuoteName</th>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Service.Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TourQuotes)
+                {
+                    <tr>
+
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.QuoteName)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.QuotePrice)
+                        </td>
+                        <td>
+                            <button class="btn btn-link QuoteEdit" id="QuoteEdit@item.Id" data-id="@item.Id">@IsisTravelCore.Resources.Genral.Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

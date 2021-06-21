@@ -1,0 +1,62 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+@{ var Activation = "";}
+<form method="post" id="ActivityTour-Form" action="#" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <input type="hidden" id="tourActivityId" />
+        <input type="hidden" id="activity" />
+        <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Activity.Name</label>
+        <div class="col-md-6">
+            <input id="ActivityId" name="ActivityId" class="form-control  m-input" />
+            @*<select id="ActivityId" name="ActivityId" class="form-control  m-input select2" style="width:100%" asp-items="ViewBag.ActivityId"></select>*@
+        </div>
+        <span class="text-danger col-md-2" id="ActivityVaildation"></span>
+    </div>
+    <div class="form-group m-form__group row">
+        <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Activity.Description</label>
+        <div class="col-md-8">
+            <textarea id="ActivityDescription" name="ActivityDescription" class="form-control m-input summernote"></textarea>
+            <span class="text-danger col-md-2" id="DescriptionVaildation"></span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-md-2">
+            <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" id="saveActivityTour" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <table class="table table-striped- table-bordered table-hover table-checkable responsive" id="TourActivities">
+            <thead>
+                <tr>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Activity.Name</th>
+                    <th style="text-align:center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Activities.Where(t => t.Active))
+                {
+                    <tr>
+
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Activity.Name)
+                        </td>
+
+                        <td style="text-align:center">
+                            @if (item.Active)
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.InActive;
+                            }
+                            else
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.Active;
+                            }
+                            <a asp-action="ActivationActivity" asp-route-id="@item.Id">@Activation</a>
+                            <button class="btn btn-link ActivityEdit" id="ActivityEdit_@item.Id" data-id="@item.Id">@IsisTravelCore.Resources.Genral.Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

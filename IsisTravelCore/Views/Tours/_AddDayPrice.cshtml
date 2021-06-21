@@ -1,0 +1,54 @@
+﻿@model IsisTravelCore.Models.Domains.CatrgoryDayPrice
+<div class="modal fade" id="DayCategoriesmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Añadir precio por día
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form  class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" asp-action="AddDayPrice" asp-controller="Tours" id="DayCategories-Form">
+                <div class="modal-body">
+                    <input type="hidden" id="DayCategoryId" name="DayCategoryId" value="@Model.TourCategoryId" />
+                    <input type="hidden" id="DayId" name="DayId" />
+                    <div class="form-group m-form__group row">
+                        <label asp-for="Date" class="col-form-label col-md-2"></label>
+                        <div class="col-md-4">
+                            <input type="text" asp-for="Date" class="form-control datepicker2" required="" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <label asp-for="AdultPrice" class="col-form-label col-md-2"></label>
+                        <div class="col-md-4">
+                            <input asp-for="AdultPrice" class="form-control " required="" />
+                            <span asp-validation-for="AdultPrice" class="text-danger"></span>
+                        </div>
+                     
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label asp-for="ChildPrice" class="col-form-label col-md-2"></label>
+                        <div class="col-md-4">
+                            <input asp-for="ChildPrice" class="form-control " required="" />
+                            <span asp-validation-for="ChildPrice" class="text-danger"></span>
+                        </div>
+                        <label asp-for="BabyPrice" class="col-form-label col-md-2"></label>
+                        <div class="col-md-4">
+                            <input asp-for="BabyPrice" class="form-control " required="" />
+                            <span asp-validation-for="BabyPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        @IsisTravelCore.Resources.Genral.Cancel
+                    </button>
+                    <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" id="saveCategoryTour" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

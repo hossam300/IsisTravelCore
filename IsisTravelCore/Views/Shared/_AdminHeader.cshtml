@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+    @{
+        var user = await UserManager.GetUserAsync(User);
+    }
+    <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
+        <div class="m-container m-container--fluid m-container--full-height">
+            <div class="m-stack m-stack--ver m-stack--desktop">
+                <!-- BEGIN: Brand -->
+                <div class="m-stack__item m-brand  m-brand--skin-dark ">
+                    <div class="m-stack m-stack--ver m-stack--general">
+                        <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                            <a asp-action="Index" asp-controller="Home" class="m-brand__logo-wrapper">
+                                @*<img src="~/img/topHeader.jpg" width="100" />*@
+                                <i style="font-family: fantasy;font-size: 20px;color: #3F51B5;">@IsisTravelCore.Resources.Genral.IsisTravel</i>
+                                @*<img title="" src="~/images/dragons-logo.png" width="80%" />*@
+                            </a>
+                        </div>
+                        <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                            <!-- BEGIN: Left Aside Minimize Toggle -->
+                            <a href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block">
+                                <span></span>
+                            </a>
+                            <!-- END -->
+                            <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+                            <a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
+                                <span></span>
+                            </a>
+                            <!-- END -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Brand -->
+                <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
+                    <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+                        <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
+                            <h3 class="m-subheader__title ">
+                                @ViewBag.Title
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
+                    <div class="m-stack__item m-topbar__nav-wrapper">
+
+                        <ul class="m-topbar__nav m-nav m-nav--inline">
+                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                                <span class="m-menu__link-title">
+                                    <span class="m-menu__link-wrap">
+                                        <span class="m-menu__link-text">
+                                            <label class="control-label m-nav__item" style="margin-top: 25%;">@IsisTravelCore.Resources.Genral.Hello @UserManager.GetUserName(User) !</label>
+                                        </span>
+                                    </span>
+                                </span>
+
+
+                            </li>
+                            <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light" m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
+                                <img src="~/img/topHeader.jpg" width="110" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

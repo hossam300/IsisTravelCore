@@ -1,0 +1,115 @@
+﻿@model IsisTravelCore.Models.Domains.RequestOffer
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>RequestOffer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdultQuantity" class="control-label"></label>
+                <input asp-for="AdultQuantity" class="form-control" />
+                <span asp-validation-for="AdultQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BabyQuantity" class="control-label"></label>
+                <input asp-for="BabyQuantity" class="form-control" />
+                <span asp-validation-for="BabyQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExtraRoomQuantity" class="control-label"></label>
+                <input asp-for="ExtraRoomQuantity" class="form-control" />
+                <span asp-validation-for="ExtraRoomQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalAdult" class="control-label"></label>
+                <input asp-for="TotalAdult" class="form-control" />
+                <span asp-validation-for="TotalAdult" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalBaby" class="control-label"></label>
+                <input asp-for="TotalBaby" class="form-control" />
+                <span asp-validation-for="TotalBaby" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalExtraRoom" class="control-label"></label>
+                <input asp-for="TotalExtraRoom" class="form-control" />
+                <span asp-validation-for="TotalExtraRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourId" class="control-label"></label>
+                <select asp-for="TourId" class ="form-control" asp-items="ViewBag.TourId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Finished" /> @Html.DisplayNameFor(model => model.Finished)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatorId" class="control-label"></label>
+                <select asp-for="CreatorId" class ="form-control" asp-items="ViewBag.CreatorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastModifiedDate" class="control-label"></label>
+                <input asp-for="LastModifiedDate" class="form-control" />
+                <span asp-validation-for="LastModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

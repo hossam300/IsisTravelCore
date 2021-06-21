@@ -1,0 +1,530 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+
+@{
+    ViewData["Title"] = IsisTravelCore.Resources.Home.TourDetails;
+    var cultureInfo = new System.Globalization.CultureInfo("es-CL");
+    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+}
+@section Styles{
+    @*<link href='https://use.fontawesome.com/releases/v5.0.10/css/all.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' />*@
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" />
+    <style>
+
+        #breadcrumb [class~=bread-title], #breadcrumb .ul-breadcrumb li a, #breadcrumb [class~=ul-breadcrumb] li:after {
+            color: #2d2f34;
+        }
+
+        .Oldevent {
+            background-color: #c0c0c057;
+            text-decoration: line-through;
+            cursor: no-drop;
+        }
+
+        .highlight {
+            background-color: green;
+            color: #fff;
+        }
+
+        .activeDay {
+            background-color: #17c41782;
+        }
+    </style>
+}
+<section id="contact-us" class="t-p medida wow fadeInUp">
+    <div class="container wow fadeIn" data-wow-delay=".5s">
+        <div class="text-offer">
+            <h2> @Model.TourName</h2>
+            <div class="price row">
+                <h6 class="our_price_display">
+                    @Model.Price €
+                </h6>
+                <h6 class="old_price" style="background-color: transparent;color: #ea6969;">
+                    @Model.OldPrice €
+                </h6>
+            </div>
+        </div>
+        <div class="select-oofer">
+            <!-- Tabs -->
+            <div class="tabs">
+                <!-- Tab links -->
+                <div class="tab-links">
+                    <ul class="tab-list">
+                        <li class="active"><a href="#myBudget">@IsisTravelCore.Resources.Home.myBudget</a></li>
+                        <li><a href="#2">@IsisTravelCore.Resources.Tour.Description</a></li>
+                        <li><a href="#3">@IsisTravelCore.Resources.Home.Intinerary</a></li>
+                        <li><a href="#4">@IsisTravelCore.Resources.Home.TripInclude</a></li>
+                        <li><a href="#5">@IsisTravelCore.Resources.Home.CategoriesAndHotels</a></li>
+                    </ul>
+                </div>
+                <!-- end tab links -->
+                <!-- Tab content -->
+                <div class="tab-content">
+                    <div id="myBudget" class="tab-panel active">
+                        <div class="row d-flex">
+                            <div class="col-md-6 righto">
+                                <h2>Cuidad</h2>
+                                <div class="form-group">
+                                    <select id="City" name="City">
+                                        <option value="2">Madrid</option>
+                                        <option value="1">Barcelona</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 righto">
+                                <h2>Categorías y hoteles</h2>
+                                <div class="form-group">
+                                    <select id="Catrgory" name="Catrgory">
+                                        @foreach (var item in Model.TourCategories.Where(t => t.CityId == 2 && t.Active))
+                                        {
+                                            <option value="@item.Id">@item.Category.Name</option>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 righto">
+                                <form method="post" id="requestOffer">
+                                    <div class="row d-flex">
+
+                                        <div class="col-md-5 righto">
+                                            <h2 class="title_block">@IsisTravelCore.Resources.Home.GetAQuote</h2>
+
+                                            <div class="form-group">
+                                                <input type="hidden" id="TourId" name="TourId" value="@Model.Id" />
+                                                <label>Fecha </label>
+                                                <input type='text' id="RequestDate" class="form-control" disabled="disabled" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@IsisTravelCore.Resources.Home.Adult  </label> ( <label class="Adult"></label> )
+                                                <select class="form-control" id="Adult" name="Adult">
+                                                    <option value="1">1</option>
+                                                    <option value="2" selected="selected">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> @IsisTravelCore.Resources.Home.ExtraRoom &lt; 12   </label> ( <label class="ExtraRoom"></label> )
+                                                <select class="form-control" id="ExtraRoom" name="ExtraRoom">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <p class="help-block">@IsisTravelCore.Resources.Home.Note </p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@IsisTravelCore.Resources.Home.Baby  ( <label class="Baby"></label> ) </label>
+                                                <select class="form-control" id="Baby" name="Baby">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@IsisTravelCore.Resources.Home.RoomType  ( <label class="RoomType"></label> ) </label>
+                                                <select class="form-control" id="RoomType" name="RoomType">
+                                                    <option value="1">@IsisTravelCore.Resources.Home.Single</option>
+                                                    <option value="2" selected="selected">@IsisTravelCore.Resources.Home.Double</option>
+                                                    <option value="3">@IsisTravelCore.Resources.Home.Trible</option>
+                                                </select>
+                                            </div>
+
+
+                                            <table class="table" style="display:none">
+                                                <tbody>
+                                                    <tr class="adult">
+                                                        <th>
+                                                            <strong>@IsisTravelCore.Resources.Home.Adult</strong>
+                                                        </th>
+                                                        <td>
+                                                            <label class="AdultTotal"></label>
+                                                            <input type="hidden" id="AdultVal" name="AdultVal" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="shipping">
+                                                        <th>
+                                                            @IsisTravelCore.Resources.Home.Baby
+                                                        </th>
+                                                        <td>
+                                                            <label class="BabyTotal"></label>
+                                                            <input type="hidden" id="BabyVal" name="BabyVal" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="extra-room">
+                                                        <th>
+                                                            @IsisTravelCore.Resources.Home.ExtraRoom
+                                                        </th>
+                                                        <td>
+                                                            <label class="ExtraRoomTotal"></label>
+                                                            <input type="hidden" id="ExtraRoomVal" name="ExtraRoomVal" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="extra-room">
+                                                        <th>
+                                                            @IsisTravelCore.Resources.Home.RoomType
+                                                        </th>
+                                                        <td>
+                                                            <label class="RoomTypeTotal"></label>
+                                                            <input type="hidden" id="RoomTypeVal" name="RoomTypeVal" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <th>
+                                                            <strong>@IsisTravelCore.Resources.Home.Total</strong>
+                                                        </th>
+                                                        <td>
+                                                            <strong><span class="amount"> <label id="Total"></label></span></strong>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                        <div class="col-md-7 righto">
+                                            <div id="CatrgoryCalender"></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row d-flex">
+                                        <div class="col-md-8" style="text-align:right">
+                                        </div>
+                                        <div class="col-md-4" style="text-align:right">
+                                            <button id="BookNow" type="submit" class="form-control">@IsisTravelCore.Resources.Home.BookNow</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="2" class="tab-panel">
+                    <h2>Description</h2>
+                    <p>@Html.Raw(Model.Description)</p>
+                </div>
+
+                <div id="3" class="tab-panel">
+                    @foreach (var item in Model.Activities.Where(c => c.Active))
+                    {
+                        <h2>ITINERARIO  </h2>
+                        <p>
+                            @Html.Raw(item.Activity.Description)
+                        </p>
+                    }
+                </div>
+                <div id="4" class="tab-panel">
+                    @foreach (var item in Model.TourInclude.Where(c => c.Active))
+                    {
+                        <h2 class="h-day">EL VIAJE INCLUYE</h2>
+
+                        <p>@Html.Raw(item.Include.Description)</p>
+                    }
+                </div>
+                <div id="5" class="tab-panel">
+                    <div id="CHotels" class="row">
+
+                    </div>
+                </div>
+                <!-- end tab content -->
+            </div>
+            <!-- end tabs -->
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/locale-all.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            CatrgoryonClick($("#Catrgory").val());
+        });
+        $("#BookNow").hide();
+        var CatId = 0;
+        $("#City").on('change', function () {
+            $("#Catrgory").empty();
+
+            $("#categoriesHotels").hide();
+            $("#CatrgoryCalender").fullCalendar('destroy');
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'Get',
+                url: "/Home/GetCategoryByCity/?TourId=" + $("#TourId").val() + "&&CityId=" + $("#City").val(),
+                success: function (result) {
+                    $("#Catrgory").append($('<option/>').val("").text("Elegir la categoría"));
+                    $.each(result, function (i, val) {
+                            $("#Catrgory").append($('<option/>').val(val.id).text(val.categoryName));
+                    });
+                },
+                    error: function (xhr) { console.log(xhr.error); }
+            });
+        });
+        $("#Catrgory").on('change', function () {
+            CatrgoryonClick($(this).val());
+        })
+        var path='@Url.Content("~/")';
+        $("#categoriesHotels").hide();
+        function CatrgoryonClick(id) {
+            CatId = id;
+            $(".Catrgory").removeClass("highlight");
+            $(this).addClass("highlight");
+            renderHotels(id, $("#TourId").val());
+            renderCalender(CatId);
+        }
+        function renderCalender(id) {
+            $.blockUI({ message: 'Loading ...', css: { backgroundColor: 'rgba(96, 125, 139, 0)', color: '#4CAF50', border: '0px', opacity: 1} });
+            $("#BookNow").hide();
+            $("#CatrgoryCalender").fullCalendar('destroy');
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'Get',
+                url: "/Home/CategoryDays/?id=" + id + "&&City=" + $("#City").val() + "&&Adult=" + $("#Adult").val() + "&&Baby=" + $("#Baby").val() + "&&Child=" + $("#ExtraRoom").val() + "&&RoomType=" + $("#RoomType").val(),
+                success: function (result) {
+                    $(document).ajaxStop($.unblockUI);
+                    var e = moment().startOf("day");
+                    $("#CatrgoryCalender").fullCalendar(
+                        {
+                            themeSystem: 'bootstrap3',
+                            header: { left: "prev,next today", center: "title", right: "month,agendaWeek,agendaDay,listWeek" },
+                            editable: !0, eventLimit: !0, navLinks: !0, locale: 'es', eventStartEditable: false, displayEventTime: false,
+                            select: function (start, end) {
+                                if (start.isBefore(moment())) {
+                                    $('#CatrgoryCalender').fullCalendar('unselect');
+                                    return false;
+                                }
+                            },
+                            events: result.categoryDayPrices,
+                            eventRender: function (e, t) {
+
+                            },
+                            dayClick: function (date, jsEvent, view, resourceObj) {
+
+                                var events = $('#CatrgoryCalender').fullCalendar('clientEvents');
+                                var currentEvent;
+                                var dateofevent = moment();
+                                var datemom = moment.utc(date).format('YYYY-MM-DD');
+                                for (var i = 0; i < events.length; i++) {
+                                    var startevent = moment.utc(events[i].start).format('YYYY-MM-DD');
+                                    if (datemom === startevent) {
+                                        currentEvent = events[i];
+                                        dateofevent = moment(startevent);
+                                        break;
+                                    }
+                                }
+                                if (currentEvent != null && moment().diff(dateofevent) <= 0) {
+                                    $("#CatrgoryCalender td.activeDay").removeClass('activeDay');
+                                    var dataToFind = moment(date).format('YYYY-MM-DD');
+                                    var dataToFindval = moment(date).format('DD-MM-YYYY');
+                                    $("td[data-date='" + dataToFind + "']").addClass('activeDay');
+                                    Calculate(currentEvent, dataToFind);
+                                }
+                            },
+                            eventClick: function (calEvent, jsEvent, view) {
+                                if (moment().diff(moment(calEvent.start)) <= 0) {
+                                    $("#CatrgoryCalender td.activeDay").removeClass('activeDay');
+                                    var dataToFind = moment(calEvent.start).format('YYYY-MM-DD');
+                                    var dataToFindval = moment(calEvent.start).format('DD-MM-YYYY');
+                                    $("td[data-date='" + dataToFind + "']").addClass('activeDay');
+                                    Calculate(calEvent, dataToFind);
+                                }
+
+                                // calEvent.className = "lable-danger";
+                            }
+                            , dayRender: function (date, cell) {
+                                if (moment().diff(date, 'days') > 0) {
+                                    cell.addClass("Oldevent");
+                                }
+                            },
+                        });
+                },
+                error: function (xhr) { console.log(xhr.error); }
+            });
+        }
+        function Calculate(event, date) {
+            $.blockUI({ message: 'Loading ...', css: { backgroundColor: 'rgba(96, 125, 139, 0)', color: '#4CAF50', border: '0px', opacity: 1 }, timeout: 2000  });
+            $("#RequestDate").val(date);
+            var description = event.description.split(",");
+            var Adult = description[0].split(":")[1];
+            var Baby = description[1].split(":")[1];
+            var ExtraRoom = description[2].split(":")[1];
+            var RoomType = description[3].split(":")[1];
+            $(".Adult").text(Adult);
+            $(".Baby").text(Baby);
+            $(".ExtraRoom").text(ExtraRoom);
+            $(".RoomType").text(RoomType);
+            rendertotals();
+            $("#BookNow").show();
+            $(document).ajaxStop($.unblockUI);
+        }
+        function rendertotals() {
+            var Adult = $(".Adult").text();
+            var Baby = $(".Baby").text();
+            var ExtraRoom = $(".ExtraRoom").text();
+            var RoomType = $(".RoomType").text();
+            if ($("#RoomType").val()!=1) {
+                RoomType = 0;
+            }
+            var AdultQuantity = $("#Adult").val();
+            var BabyQuantity = $("#Baby").val();
+            var ExtraRoomQuantity = $("#ExtraRoom").val();
+            var totalAdult = parseInt(AdultQuantity) * parseInt(Adult);
+            var totalBaby = parseInt(BabyQuantity) * parseInt(Baby);
+            var totalExtraRoom = parseInt(ExtraRoomQuantity) * parseInt(ExtraRoom);
+            $(".RoomTypeTotal").text(RoomType);
+            $("#totalAdult").text(totalAdult);
+            $("#totalBaby").text(totalBaby);
+            $("#totalExtraRoom").text(totalExtraRoom);
+            $(".AdultTotal").text(totalAdult);
+            $(".BabyTotal").text(totalBaby);
+            $(".ExtraRoomTotal").text(totalExtraRoom);
+            $("#AdultVal").val(totalAdult);
+            $("#BabyVal").val(totalBaby);
+            $("#ExtraRoomVal").val(totalExtraRoom);
+            $("#RoomTypeVal").val(RoomType);
+            $("#Total").text(totalAdult + totalBaby + totalExtraRoom + parseInt(RoomType));
+        }
+
+        $("#Adult").on('change', function () {
+            //if (CatId != 0) {
+            //    renderCalender(CatId);
+            //}
+
+            if ($(".Adult").text() != "") {
+
+                rendertotals();
+            }
+        });
+        $("#Baby").on('change', function () {
+            //if (CatId != 0) {
+            //    renderCalender(CatId);
+            //}
+            if ($(".Baby").text() != "") {
+
+                rendertotals();
+            }
+        });
+        $("#ExtraRoom").on('change', function () {
+        //    if (CatId != 0) {
+        //        renderCalender(CatId);
+        //    }
+            if ($(".ExtraRoom").text() != "") {
+
+                rendertotals();
+            }
+        });
+        $("#RoomType").on('change', function () {
+            //if (CatId != 0) {
+            //    renderCalender(CatId);
+            //}
+            if ($(".RoomType").text() != "") {
+
+                rendertotals();
+            }
+        });
+        function renderHotels(id, TourId) {
+            $("#CHotels").html('');
+            $.ajax({
+                type: 'Get',
+                url: "/Home/GetCategoryHotels/?CategoryId=" + id + "&&TourId=" + TourId,
+                success: function (d) {
+                    var html = '';
+                    $.each(d, function (i, val) {
+                        html += ' <div class="panel-body">'+
+                            '<table class="table table-responsive">' +
+                            '<tbody>' +
+                            '<tr>' +
+                            '<th colspan="2">' +
+                            '<a href="/Home/HotelDetails/' + val.id + '" class="product_img_link" title="' + val.name + '">' +
+                            '<img src="/uploads/' + val.countryName + '/Hotels/'  + val.image + '" class="img-responsive image-effect" width="991" height="659">' +
+                            '</a></th></tr>' +
+                            '<tr class="adult">' +
+                            '<th>'+
+                            '<a href="/Home/HotelDetails/' + val.id + 'class="product_img_link" title="' + val.name + '">' + val.name +
+                            ' </a></th>'+
+                            '<th>'+
+                            '<p>' + val.description + '</p>' +
+                            '</th></tr>' +
+
+                        '</tbody></table> ';
+                    });
+                    $("#CHotels").append(html);
+                    $("#categoriesHotels").show();
+                },
+                error: function (xhr) { console.log(xhr.error); }
+            });
+        }
+
+    </script>
+
+    <script>
+        $("#requestOffer").submit(function (e) {
+            e.preventDefault();
+            var date = $("#RequestDate").val();
+            var AdultQuantity = $("#Adult").val();
+            var BabyQuantity = $("#Baby").val();
+            var ExtraRoomQuantity = $("#ExtraRoom").val();
+            var RoomType = $("#RoomType").val();
+            var totalAdult = $("#AdultVal").val();
+            var totalBaby = $("#BabyVal").val();
+            var totalExtraRoom = $("#ExtraRoomVal").val();
+            var RoomTypeVal = $("#RoomTypeVal").val();
+            var Total = $("#Total").text();
+            var tourId = $("#TourId").val();
+            if (date == "") {
+                $("#ErrorSpan").text("Por favor seleccione la fecha");
+            }
+            else {
+                if (CatId == 0) {
+                    $("#ErrorSpan").text("Por favor seleccione la fecha");
+                }
+                var CategoryId = CatId;
+                var request = {
+                    Date: date,
+                    AdultQuantity: AdultQuantity,
+                    BabyQuantity: BabyQuantity,
+                    ExtraRoomQuantity: ExtraRoomQuantity,
+                    TotalAdult: totalAdult,
+                    TotalBaby: totalBaby,
+                    TotalExtraRoom: totalExtraRoom,
+                    Total: Total,
+                    TourId: tourId,
+                    CategoryId: CategoryId,
+                    City: $("#City").val(),
+                    RoomType: RoomType,
+                    RoomTypeVal: RoomTypeVal
+                };
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: "/Home/AddRequest/",
+                    data: { "request": request },
+                    success: function (result) {
+                        location.replace("/Home/ConfirmRequest/" + result.id);
+                    },
+                    error: function (xhr) {
+                        alert(xhr.error);
+                    }
+                });
+            }
+
+        });
+    </script>
+}

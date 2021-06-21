@@ -1,0 +1,40 @@
+﻿<div class="modal fade" id="EmailSender" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Enviar correo electrónico
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="SendMail-Form">
+                <div class="modal-body">
+                    <input type="hidden" id="Email" name="Email"  />
+                    <input type="hidden" id="Request" name="Request"  />
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-md-2">Asunto del email</label>
+                        <div class="col-md-4">
+                            <input id="Subject" name="Subject" class="form-control " required="" />
+                        </div>
+                        <label class="col-form-label col-md-2">Mensaje</label>
+                        <div class="col-md-4">
+                            <textarea type="text" id="Message" name="Message" class="form-control" required=""></textarea>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <input type="submit" value="Salvar" id="saveCategoryTour" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

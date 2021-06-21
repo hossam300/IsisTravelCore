@@ -1,0 +1,41 @@
+﻿@model IEnumerable<IsisTravelCore.Models.Domains.Tour>
+
+@{
+    var cultureInfo = new System.Globalization.CultureInfo("es-CL");
+    System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+    System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+}
+<div class="best-offers t-p">
+    <div class="container custom">
+        <div class="wow fadeInDown">
+            <h2>Most Visit places by alas de isis</h2>
+            <p>description descriptiondescriptiondescription</p>
+        </div>
+        <div class="col-12-lg collection-offers d-flex wow fadeInUp">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="block col-lg-4">
+                        <img src="@Url.Content("~/uploads/" + item.Country.Name + "/Tours/" + item.TourMainImage)">
+                        <div class="overlay">
+                            <h2>@item.Country.Name</h2>
+                            <h3> @item.TourName</h3>
+
+                            <div class="content_price">
+                                <span>
+                                    <span class="price product-price">@item.Price € </span>
+                                    <span class="old-price product-price">@item.OldPrice € </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="overlay2"></div>
+
+                        <div class="button">
+                            <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

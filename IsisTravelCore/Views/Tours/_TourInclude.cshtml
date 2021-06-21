@@ -1,0 +1,66 @@
+﻿@model IsisTravelCore.Models.Domains.Tour
+@{ var Activation = "";}
+<form method="post" id="IncludeTour-Form" action="#" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <input type="hidden" id="tourIncludeId" />
+        <input type="hidden" id="include" />
+        <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Include.Name</label>
+        <div class="col-md-6">
+            <input id="IncludeId" name="IncludeId" class="form-control  m-input " />
+            @*<select id="IncludeId" name="IncludeId" class="form-control  m-input select2" style="width:100%" asp-items="ViewBag.IncludeId"></select>*@
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-md-2">@IsisTravelCore.Resources.Activity.Description</label>
+            <div class="col-md-8">
+                <textarea id="IncludeDescription" name="IncludeDescription" class="form-control m-input summernote"></textarea>
+                <span class="text-danger col-md-2" id="IncludeDescriptionVaildation"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <span class="text-danger col-md-2" id="IncludeVaildation"></span>
+        <div class="col-md-2">
+            <input type="submit" value="@IsisTravelCore.Resources.Genral.Save" id="saveIncludeTour" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+    <div class="form-group m-form__group row">
+        <table class="table table-striped- table-bordered table-hover table-checkable responsive" id="IncludeTours">
+            <thead>
+                <tr>
+                    <th style="text-align:center">@IsisTravelCore.Resources.Include.Name</th>
+                    <th style="text-align:center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TourInclude.Where(t => t.Active))
+                {
+                    <tr>
+
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.Include.Name)
+                        </td>
+
+
+
+                        <td style="text-align:center">
+                            @if (item.Active)
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.InActive;
+                            }
+                            else
+                            {
+                                Activation = IsisTravelCore.Resources.Genral.Active;
+                            }
+                            <a asp-action="ActivationIncludes" asp-route-id="@item.Id">@Activation</a>
+                            <button class="btn btn-link IncludeEdit" id="IncludeEdit@item.Id" data-id="@item.Id">@IsisTravelCore.Resources.Genral.Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

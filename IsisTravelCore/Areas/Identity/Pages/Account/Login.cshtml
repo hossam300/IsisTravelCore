@@ -1,0 +1,105 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewBag.Title = IsisTravelCore.Resources.Genral.Login;
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Viajes Alas De Isis  </title>
+
+    <!-- css
+     ======================================= -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/normalize.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/hover.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="shortcut icon" href="~/img/logo2.png" />
+    <!-- Modernizer Script for old Browsers -->
+    <script src="~/js/html5shiv.min.js">
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <script src="https://use.fontawesome.com/16e6a71eb8.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <!-- font-family: 'Shadows Into Light', cursive; -->
+</head>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <!-- begin:: Page -->
+
+    <section class="login-page d-flex ">
+        <div class="col-md-6 p-0">
+            <div class="form-sign d-flex flex-column justify-content-center align-items-center">
+                <img src="~/img/logo2.png" alt="logo.png" />
+                <form class="form-group" method="post">
+                    <div class="input-style">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input asp-for="Input.UserName" class="form-control m-input" placeholder="User Name" autocomplete="off" />
+                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
+
+                    </div>
+                    <div class="input-style">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                        <input asp-for="Input.Password" class="form-control m-input m-login__form-input--last" placeholder="Password" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                    </div>
+                    <div class="input-style">
+                        <input asp-for="Input.RememberMe" type="checkbox" />
+                        <label asp-for="Input.RememberMe"></label>
+                        <button type="submit">Sign In</button>
+                    </div>
+                    @*<div class="links-login d-flex justify-content-between">
+                            <a href="./3-reset-password.html">Forget Password </a>
+                            <a href="./2-SIgn-Up.html">Sign Up Account  </a>
+                        </div>*@
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6 p-0 none">
+            <div class="descript-service d-flex flex-column justify-content-center align-items-center">
+                <div class="center">
+                    <h1>Viajes Alas De Isis </h1>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <h2>Call Us (832)773-7372</h2>
+                </div>
+                <div class="footer-social d-flex justify-content-between">
+                    <div class="email">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <p>Info@engprosoft.com</p>
+                    </div>
+                    <div class="social">
+                        <a href="">  <i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                        <a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                        <a href=""><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
+                        <a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  JavaScripts
+    ========================== -->
+    <script src="~/js/jquery-1.12.0.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/respond.min.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script src="~/js/typed.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="https://unpkg.com/ityped@1.0.3/dist/index.min.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+
+</html>

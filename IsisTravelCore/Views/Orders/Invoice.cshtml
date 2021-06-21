@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "Invoice";
+    Layout = null;
+    var discAmount1 = Model.Discount1 * Model.Price1 / 100;
+    var discAmount2 = Model.Discount2 * Model.Price2 / 100;
+    var discAmount3 = Model.Discount3 * Model.Price3 / 100;
+    var discAmount4 = Model.Discount4 * Model.Price4 / 100;
+    var totalDisc = discAmount1 + discAmount2 + discAmount3 + discAmount4;
+    var total1 = (Model.Price1 * Model.Quantity1) - discAmount1;
+    var total2 = (Model.Price2 * Model.Quantity2) - discAmount2;
+    var total3 = (Model.Price3 * Model.Quantity3) - discAmount3;
+    var total4 = (Model.Price4 * Model.Quantity4) - discAmount4;
+    var total = total1 + total2 + total3 + total4;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div width='90%' style='border: 2px dotted rgb(0,144,146)'>
+        <table width='100%' style='text-align: left'>
+            <thead>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th><img src='http://alasdeisis.com/OrderImages/HeaderLeft.PNG' /></th>
+                    <th><img src='http://alasdeisis.com/OrderImages/HeaderRight.png' /></th>
+                </tr>
+                <tr>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th><p>C/ PADILLA 57 2º IZQ</p><p>28006 - MADRID</p><p> B - 83549451 </p><p>Tlf.:91- 402 35 78 Fax: 91- 309 28 39 </p></th>
+                </tr>
+            </thead>
+        </table>
+        <hr style='color: rgb(0,144,146)'>
+        <table width='100%' style='text-align: left'>
+            <thead>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>Nombre :</td>
+                    <td>@Model.Name</td>
+                    <td>Nº FACTURA :</td>
+                    <td>@DateTime.Now.Year   @Model.OrderNumber</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>Dirección :</td>
+                    <td>@Model.Address</td>
+                    <td>Fecha :</td>
+                    <td>@Model.CreatedDate</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>Población :</td>
+                    <td>@Model.Population</td>
+                    <td></td>
+                    <td>EX 01/19 @Model.Country</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>C.P. :</td>
+                    <td>@Model.CP</td>
+                    <td>Fecha de salida : </td>
+                    <td>@Model.OrderDate</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>País :</td>
+                    <td> @Model.Country</td>
+                    <td> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>NIE :</td>
+                    <td> @Model.NIE</td>
+                    <td> </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>Teléfono :</td>
+                    <td> @Model.Phone</td>
+                    <td> </td>
+                    <td></td>
+                </tr>
+            </thead>
+        </table><hr>
+        <table border='1' style='border:#3b3b3b' width='100%'>
+            <thead>
+                <tr>
+                    <th>CONCEPTO</th>
+                    <th>UNID</th>
+                    <th>IMPORTE</th>
+                    <th>DTO.%</th>
+                    <th>DTO.€</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.ItemName1</td>
+                    <td>@Model.Quantity1</td>
+                    <td>@Model.Price1</td>
+                    <td>@Model.Discount1</td>
+                    <td>@discAmount1</td>
+                    <td>@total1</td>
+                </tr>
+                <tr>
+                    <td>@Model.ItemName2</td>
+                    <td>@Model.Quantity2</td>
+                    <td>@Model.Price2</td>
+                    <td>@Model.Discount2</td>
+                    <td>@discAmount2</td>
+                    <td>@total2</td>
+                </tr>
+                <tr>
+                    <td>@Model.ItemName3</td>
+                    <td>@Model.Quantity3</td>
+                    <td>@Model.Price3</td>
+                    <td>@Model.Discount3</td>
+                    <td>@discAmount3</td>
+                    <td>@total3</td>
+                </tr>
+                <tr>
+                    <td>@Model.ItemName4</td>
+                    <td>@Model.Quantity4</td>
+                    <td>@Model.Price4</td>
+                    <td>@Model.Discount4</td>
+                    <td>@discAmount4</td>
+                    <td>@total4</td>
+                </tr>
+                <tr><td colspan='3'></td><td colspan='3'>TOTAL SERVICIOS @(total + totalDisc)</td></tr>
+                <tr><td colspan='6'>FACTURA EXENTO IVA @totalDisc</td></tr>
+                <tr><td colspan='6'><h3>TOTAL FACTURA : @total</h3></td></tr>
+                <tr><td colspan='6'><h3>Forma de pago  : </h3></td></tr>
+                <tr><td colspan='6'><h3>BBVA : </h3></td></tr>
+                <tr><td colspan='6'><h3>Observaciones : </h3></td></tr>
+        </table>
+        <table> Cancelaciones y/o anulaciones dentro de las 72 horas previas al vuelo conllevan la pérdida del 100% del importe satisfecho. salvo si tienesseguro de anulacin rembolso 100 %</table>
+        <table width='50%' border='1'>
+            <thead><tr><th>Firma y sello de la Agenci</th></tr></thead>
+            <tbody><tr><td> </td></tr></tbody>
+            <tfoot><tr><td> </td></tr></tfoot>
+        </table>
+    </div>
+</body>
+</html>

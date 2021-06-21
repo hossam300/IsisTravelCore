@@ -1,0 +1,206 @@
+﻿@model IsisTravelCore.Models.SearchVm
+@{
+    ViewData["Title"] = "Home Page";
+    var Countries = ViewBag.Country as List<Country>;
+    var count = 0;
+    var active = "";
+    var delay = ".5s";
+    var countdelay = 0.5;
+}
+<div id="carouselExampleIndicators" class="carousel slide home" data-ride="carousel">
+    <div class="c wow flipInY" style="visibility: visible; animation-duration: 1700ms; animation-name: flipInX;">
+        <h1>
+            Viajes Alas De Isis
+        </h1>
+        <p>vive tu sueño</p>
+    </div>
+    <div class="collection-search">
+        <form asp-action="Search" asp-controller="Home">
+            <div class="group-search d-flex justify-content-center align-items-center wow fadeInUp" data-wow-delay="1.0s">
+
+                <div class="form-group width-40">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="search" class="form-control" placeholder="Palabras clave">
+                </div>
+                <div class="form-group width-30">
+                    <select asp-for="Country" id="selectCategories" asp-items="@ViewBag.Countries">
+                        <option>@IsisTravelCore.Resources.Home.Destinations</option>
+                    </select>
+                </div>
+                <div class="form-group width-30">
+                    <select asp-for="Activity" id="selectLocation" asp-items="@ViewBag.Activities">
+                        <option>@IsisTravelCore.Resources.Home.Activity</option>
+                    </select>
+                </div>
+               
+            </div>
+            <div class="form-search wow zoomIn" data-wow-delay="1.5s">
+                <button type="submit">@IsisTravelCore.Resources.Home.Search</button>
+            </div>
+        </form>
+
+    </div>
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        
+        @foreach (var item in ViewBag.SlideShow)
+        {
+            if (count==0)
+            {
+                active = "active";
+            }
+            else
+            {
+                active = "";
+            }
+            <div class="carousel-item @active">
+                <img class="d-block w-100"  src="@Url.Content("~/uploads/SildeShows/"+item.Image)" alt="@item.TourName">
+                <div class="absloute">
+                    <h3>@item.TourName <span>@item.TourPrice €</span></h3>
+                    <div class="button">
+                        <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.TourId"> @IsisTravelCore.Resources.Home.ViewDetails</a>
+                    </div>
+                </div>
+
+            </div>
+            count++;
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="best-offers">
+    <div class="container custom">
+        <div class="wow fadeInDown">
+            <h2>@IsisTravelCore.Resources.Home.TopOffers</h2>
+            <p>@IsisTravelCore.Resources.Home.DiscoverNow</p>
+        </div>
+        <div class="row">
+            <div class="collection-offers d-flex wow fadeInUp">
+                <div class="row">
+                    @foreach (var item in ViewBag.Tours)
+                    {
+                        <div class="block col-lg-4">
+                            <img src="@Url.Content("~/uploads/" + item.Country.Name + "/Tours/" + item.TourMainImage)">
+                            <div class="overlay">
+                                <h2>@item.Country.Name</h2>
+                                <h3> @item.TourName</h3>
+
+                                <div class="content_price">
+                                    <span>
+                                        <span class="price product-price">@item.Price € </span>
+                                        <span class="old-price product-price">@item.OldPrice € </span>
+                                    </span>
+                                </div>
+                            </div>
+                            @*<div class="overlay2">
+                                <span class="price product-price">@item.Price € </span>
+                            </div>*@
+
+                            <div class="button">
+                                <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="button-center wow zoomIn">
+            <a asp-action="Search" asp-controller="Home" class="center-button" title="@IsisTravelCore.Resources.Home.ViewAllTours">@IsisTravelCore.Resources.Home.ViewAllTours</a>
+        </div>
+    </div>
+</div>
+<section id="Features" class="Features ">
+    <h2> Características </h2>
+    <div class="container custom-icom">
+        @foreach (var item in ViewBag.Features)
+        {
+
+            <div class="col-md-4 wow jackInTheBox" data-wow-delay="@delay">
+                <div class="fea-icon">
+                    <img src="@Url.Content("~/uploads/Features/"+item.Icon)">
+                    <div class="top-tx">
+                        <h3>
+                            @item.Title 
+                        </h3>
+                        <p>
+                            @item.Description
+                        </p>
+                        <div class="button d-flex justify-content-center">
+                            <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.TourId">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            countdelay++;
+            delay = countdelay.ToString() + "s";
+        }
+        </div>
+    </section>
+<div class="best-city">
+    <div class="container custom">
+        <div class="wow fadeInDown">
+            <h2>Destinos más visitados por Alas de isis</h2>
+        </div>
+        <div class=" col-lg-12 wow fadeInUp">
+            <div class="row">
+                @foreach (var item in Countries)
+                {
+                    <div class="col-lg-4 img-city">
+                        <img src="@Url.Content("~/uploads/"+item.Name+"/"+item.CountryMainImage)">
+                        <div class="offer">
+                            <p> <span>@item.Tours.Count</span> @IsisTravelCore.Resources.Home.Offers</p>
+                        </div>
+                        <div class="title-city">
+                            <h1>@item.Name</h1>
+                            @{var tour = item.Tours.OrderBy(pc => pc.Price).FirstOrDefault();
+                                var price = (tour == null) ? 0 : tour.Price;
+                            }
+                            <h3>@price €</h3>
+                        </div>
+                        <div class="button-visit">
+                            <a class="button-visit" asp-action="TourCountry" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="travel">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-trael">
+                    <h1>Viajes Alas De Isis </h1>
+                    <p>Necesitas un Viaje a Medida y tu Agencia de Viajes no te lo ofrece?</p>
+                    <p>En&nbsp;<strong>ALAS DE ISIS</strong>&nbsp;te podemos crear el viaje que deseas. En todos nuestros destinos ofrecemos la posibilidad de personalizar tu itinerario:&nbsp;<strong>Egipto, Jordania, Túnez, Siria y todos los destinos del Mundo.&nbsp;</strong></p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form method="post" asp-action="Contact" asp-controller="Home" id="cform" autocomplete="on" class="contact wow fadeInRight">
+                    <h3>Formulario de contacto</h3>
+                    <div class="box-input">
+                        <input type="text" class="form-control" placeholder="Nombre" name="name">
+                        <input type="email" class="form-control" placeholder="Correo electrónico" name="email">
+                        <textarea class="form-control" placeholder="Mensaje"></textarea>
+                        <button type="submit" class="form-control">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
