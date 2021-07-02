@@ -7,13 +7,15 @@
     System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
 }
 @section Styles{
-    @*<link href='https://use.fontawesome.com/releases/v5.0.10/css/all.css' rel='stylesheet'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css' rel='stylesheet' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' />*@
+    @*
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css' rel='stylesheet' />
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" />
+    <link href='https://use.fontawesome.com/releases/v5.0.10/css/all.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" />
+
     <style>
 
         #breadcrumb [class~=bread-title], #breadcrumb .ul-breadcrumb li a, #breadcrumb [class~=ul-breadcrumb] li:after {
@@ -302,8 +304,8 @@
                     var e = moment().startOf("day");
                     $("#CatrgoryCalender").fullCalendar(
                         {
-                            themeSystem: 'bootstrap3',
-                            header: { left: "prev,next today", center: "title", right: "month,agendaWeek,agendaDay,listWeek" },
+                            themeSystem: 'bootstrap4',
+                            header: { left: "prev ", center: "today title", right: "next" },
                             editable: !0, eventLimit: !0, navLinks: !0, locale: 'es', eventStartEditable: false, displayEventTime: false,
                             select: function (start, end) {
                                 if (start.isBefore(moment())) {
