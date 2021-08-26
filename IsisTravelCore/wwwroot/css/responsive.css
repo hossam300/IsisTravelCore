@@ -88,9 +88,9 @@
 .best-offers h2{
     font-size: 26px;
 }
-.block{
+/* .block{
     width: 50%;
-}
+} */
 .Features h2{
     font-size: 32px;
 }
@@ -212,14 +212,6 @@
     .img-city{
         width: 100%;
     }
-.best-offers .row{
-    flex-direction: column;
-}
-
-.block {
-    width: 100%;
-}
-
 
 .medida h4 {
     color: #809f83;
@@ -243,7 +235,7 @@
 
 .carousel-inner h3 {
     font-size: 31px;
-    margin-left: 43px;
+    margin-left: 0;
     margin-top: -9px;
 }
 .home h1 {
@@ -252,9 +244,9 @@
 .home p {
     font-size: 19px;
 }
-.home ,.w-100{
+/* .home{
     height: 290px;
-}
+} */
 
 .copy-right p{
     font-size: 14px;

@@ -7,7 +7,7 @@
     var delay = ".5s";
     var countdelay = 0.5;
 }
-<div id="carouselExampleIndicators" class="carousel slide home" data-ride="carousel">
+<div id="carouselHome"  class="carousel slide home" data-ride="carousel">
     <div class="c wow flipInY" style="visibility: visible; animation-duration: 1700ms; animation-name: flipInX;">
         <h1 class="main-title">
             Viajes Alas De Isis
@@ -15,38 +15,13 @@
         <p>vive tu sueño</p>
     </div>
 
-    <div class="collection-search">
-        <form asp-action="Search" asp-controller="Home">
-            <div class="group-search d-flex justify-content-center align-items-center wow fadeInUp" data-wow-delay="1.0s">
-
-                <div class="form-group width-40">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="search" class="form-control" placeholder="Palabras clave">
-                </div>
-                <div class="form-group width-30">
-                    <select asp-for="Country" id="selectCategories" asp-items="@ViewBag.Countries">
-                        <option>@IsisTravelCore.Resources.Home.Destinations</option>
-                    </select>
-                </div>
-                <div class="form-group width-30">
-                    <select asp-for="Activity" id="selectLocation" asp-items="@ViewBag.Activities">
-                        <option>@IsisTravelCore.Resources.Home.Activity</option>
-                    </select>
-                </div>
-               
-            </div>
-            <div class="form-search wow zoomIn" data-wow-delay="1.5s">
-                <button type="submit">@IsisTravelCore.Resources.Home.Search</button>
-            </div>
-        </form>
-
-    </div>
+    
     <!---<ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        <li data-target="#carouselHome" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselHome" data-slide-to="1"></li>
+        <li data-target="#carouselHome" data-slide-to="2"></li>
+        <li data-target="#carouselHome" data-slide-to="3"></li>
+        <li data-target="#carouselHome" data-slide-to="4"></li>
     </ol>
         -->
     <div class="carousel-inner">
@@ -63,7 +38,7 @@
             }
             <div class="carousel-item @active">
                 <img class="d-block w-100"  src="@Url.Content("~/uploads/SildeShows/"+item.Image)" alt="@item.TourName">
-                <div class="absloute">
+                <div class="absolute">
                     <h3>@item.TourName <span>@item.TourPrice €</span></h3>
                     <div class="button">
                         <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.TourId"> @IsisTravelCore.Resources.Home.ViewDetails</a>
@@ -74,14 +49,46 @@
             count++;
         }
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+
+
+    <div class="collection-search">
+           <div class="search-group">
+                  <form asp-action="Search" asp-controller="Home">
+            <div class="group-search row justify-content-center align-items-center wow fadeInUp" data-wow-delay="1.0s">
+
+                <div class="form-group col-lg-3">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="search" class="form-control" placeholder="Palabras clave">
+                </div>
+                <div class="form-group col-lg-3 outline-select">
+                    <select asp-for="Country" id="selectCategories" asp-items="@ViewBag.Countries">
+                        <option>@IsisTravelCore.Resources.Home.Destinations</option>
+                    </select>
+                    <span class="select-icon"></span>
+                </div>
+                <div class="form-group col-lg-3 outline-select">
+                    <select asp-for="Activity" id="selectLocation" asp-items="@ViewBag.Activities">
+                        <option>@IsisTravelCore.Resources.Home.Activity</option>
+                    </select>
+                     <span class="select-icon"></span>
+                </div>
+                <div class="form-search form-group wow zoomIn col-lg-3" data-wow-delay="1.5s">
+                <button type="submit">@IsisTravelCore.Resources.Home.Search</button>
+            </div>
+            </div>
+           
+        </form>
+           </div>
+
+    </div>
 </div>
 
 <div class="best-offers">
@@ -90,13 +97,14 @@
             <h2>@IsisTravelCore.Resources.Home.TopOffers</h2>
             <p>@IsisTravelCore.Resources.Home.DiscoverNow</p>
         </div>
-        <div class="row">
-            <div class="collection-offers d-flex wow fadeInUp">
+    
+            <div class="collection-offers wow fadeInUp">
                 <div class="row">
                     @foreach (var item in ViewBag.Tours)
                     {
-                        <div class="block col-lg-4">
-                            <img src="@Url.Content("~/uploads/" + item.Country.Name + "/Tours/" + item.TourMainImage)">
+                        <div class=" col-lg-4 col-sm-6 col-12">
+                          <div class="block">
+                              <img src="@Url.Content("~/uploads/" + item.Country.Name + "/Tours/" + item.TourMainImage)">
                             <div class="overlay">
                                 <h2>@item.Country.Name</h2>
                                 <h3> @item.TourName</h3>
@@ -107,20 +115,23 @@
                                         <span class="old-price product-price">@item.OldPrice € </span>
                                     </span>
                                 </div>
+                                 <div class="button">
+                                <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
+                            </div>
                             </div>
                             @*<div class="overlay2">
                                 <span class="price product-price">@item.Price € </span>
                             </div>*@
 
-                            <div class="button">
-                                <a class="nav-link purchace-header" asp-action="TourDetails" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
-                            </div>
+                           
+
+                          </div>
                         </div>
                     }
                 </div>
                 <!-- </div> -->
             </div>
-        </div>
+        
         <div class="button-center wow zoomIn">
             <a asp-action="Search" asp-controller="Home" class="center-button" title="@IsisTravelCore.Resources.Home.ViewAllTours">@IsisTravelCore.Resources.Home.ViewAllTours</a>
         </div>
@@ -207,4 +218,5 @@
         </div>
     </div>
 </div>
+
 
