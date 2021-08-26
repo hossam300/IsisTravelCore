@@ -9,11 +9,12 @@
 }
 <div id="carouselExampleIndicators" class="carousel slide home" data-ride="carousel">
     <div class="c wow flipInY" style="visibility: visible; animation-duration: 1700ms; animation-name: flipInX;">
-        <h1>
+        <h1 class="main-title">
             Viajes Alas De Isis
         </h1>
         <p>vive tu sueño</p>
     </div>
+
     <div class="collection-search">
         <form asp-action="Search" asp-controller="Home">
             <div class="group-search d-flex justify-content-center align-items-center wow fadeInUp" data-wow-delay="1.0s">
@@ -40,11 +41,14 @@
         </form>
 
     </div>
-    <ol class="carousel-indicators">
+    <!---<ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
     </ol>
+        -->
     <div class="carousel-inner">
         
         @foreach (var item in ViewBag.SlideShow)
