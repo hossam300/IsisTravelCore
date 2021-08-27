@@ -5,14 +5,16 @@
 @{ var countries = Context.Countries.ToList();}
 <!--   Menu Header -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <a class="navbar-brand d-inline-block d-lg-none" href="#"><img src="~/img/logo-whait2.png" alt="alasdeisis"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        @* <span class="navbar-toggler-icon"></span> *@
+        <i class="fa fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="logo-navbar">
-            <img src="~/img/logo2.png">
+            <img src="~/img/logo2.png" alt="alasdeisis">
 
         </div>
         <div class="titile-logo">

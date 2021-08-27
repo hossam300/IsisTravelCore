@@ -167,14 +167,15 @@
 <div class="best-city">
     <div class="container custom">
         <div class="wow fadeInDown">
-            <h2>Destinos más visitados por Alas de isis</h2>
+            <h2 class="mb-2">Destinos más visitados por Alas de isis</h2>
         </div>
         <div class=" col-lg-12 wow fadeInUp">
             <div class="row">
                 @foreach (var item in Countries)
                 {
-                    <div class="col-lg-4 img-city">
-                        <img src="@Url.Content("~/uploads/"+item.Name+"/"+item.CountryMainImage)">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                       <div class="img-city">
+                             <img src="@Url.Content("~/uploads/"+item.Name+"/"+item.CountryMainImage)">
                         <div class="offer">
                             <p> <span>@item.Tours.Count</span> @IsisTravelCore.Resources.Home.Offers</p>
                         </div>
@@ -188,6 +189,7 @@
                         <div class="button-visit">
                             <a class="button-visit" asp-action="TourCountry" asp-controller="Home" asp-route-id="@item.Id">@IsisTravelCore.Resources.Home.ViewDetails</a>
                         </div>
+                       </div>
                     </div>
                 }
             </div>

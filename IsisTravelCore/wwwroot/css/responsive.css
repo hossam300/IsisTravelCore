@@ -8,7 +8,7 @@
 }
 
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
 .none{
     display: none
 }
@@ -47,12 +47,15 @@
     left: auto;
     width: 100%;
     text-align: center;
-    opacity: 1 !important; }
+    opacity: 1 !important; 
+    display: none;
+    
+}
  .logo-navbar{
      display: none !important
  }
  .bg-light {
-    background:linear-gradient(-90deg, rgb(94, 116, 197), rgb(110, 171, 64)) !important;
+    /* background:linear-gradient(-90deg, rgb(94, 116, 197), rgb(110, 171, 64)) !important; */
     z-index: 9999;
 }
 
@@ -62,17 +65,21 @@
     background: rgb(255, 255, 255);
     border: 1px solid;
 }
-
+.navbar-light .navbar-brand img{
+    width:40px;
+}
 .navbar-light .navbar-toggler {
-    color: rgba(0,0,0,.5);
-    border-color:#fff;
-    background: #fff;
+    color: rgb(255, 255, 255);
+    border-color:transparent;
+    background: transparent;
     z-index: 9999999999;
 
 }
-.navbar-toggler{
-    background: #fff
+.navbar-light .navbar-toggler .fa-bars{
+    color:#fff;
+    font-size: 26px;
 }
+
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
     color: rgb(146, 128, 85) !important;
 }
@@ -105,12 +112,6 @@
 } 
 .fea-icon .button .nav-link {
      width: 150px;
-}
-.img-city{
-    width: 50%;
-}
-.best-city img {
-    width: 94%;
 }
 
 .custom-icom {
@@ -185,11 +186,11 @@
 .margin-topp{
     flex-direction: column;
 }
-.medida .row{
+/* .medida .row{
 
     display: flex;
     flex-direction: column;
-}
+} */
 
 .col-md-7 { 
     max-width: 100%;
@@ -204,7 +205,7 @@
 @media (max-width: 767px) {
 
 .medida h2 {
-    font-size: 26px;
+    font-size: 24px;
 }
     .tab-content{
         padding: 0
@@ -215,7 +216,7 @@
 
 .medida h4 {
     color: #809f83;
-    font-size: 23px;
+    font-size: 20px;
 }
 
 }
