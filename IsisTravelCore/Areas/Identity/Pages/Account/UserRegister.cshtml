@@ -4,7 +4,8 @@
     ViewData["Title"] = "Register";
 }
 
-<section id="contact-us" class="t-p medida wow fadeInUp">
+
+<section id="contact-us" class="medida wow fadeInUp contact-us">
     <div class="container wow fadeIn" data-wow-delay=".5s">
         <div class="row">
             <div class="regist wow fadeInRight">
@@ -14,7 +15,7 @@
                         <input type="hidden" asp-for="Input.RequestId" />
                         <h3 class="panel-heading">Create an account</h3>
                         <div asp-validation-summary="All" class="text-danger"></div>
-                        <div class="form_content panel-body clearfix" style="padding: 25px">
+                        <div class="form_content panel-body clearfix">
                             <div class="form-group required">
                                 <label asp-for="Input.FirstName"></label>
                                 <input asp-for="Input.FirstName" class="form-control" />
@@ -56,11 +57,7 @@
                                 <span asp-validation-for="Input.Address" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12">
-                                        <button type="submit" class="form-control ">Register   </button>
-                                        
-
-                                </div>
+                                <button type="submit" class="form-control ">Register   </button>
                             </div>
                         </div>
                     </form>

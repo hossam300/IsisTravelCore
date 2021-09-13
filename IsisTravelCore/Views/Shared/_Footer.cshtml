@@ -1,12 +1,13 @@
 ﻿@inject IsisTravelCore.Data.ApplicationDbContext Context
 @{var pages = Context.IsisPages.Where(p=>p.Active).ToList();}
 <footer class="footer">
-    <div class="container-fluid d-flex">
-        <div class="col-lg-4 custom-footer">
+    <div class="container">
+        <div class="row align-items-center">
+        <div class="col-lg-4 col-md-6 custom-footer mb-md-0 mb-3">
             <div class="wow fadeInLeft" style="width:100% !important">
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-4">
                         <ul class="navbar-nav">
                             @foreach (var item in pages.Where(c => c.PageCatgory == IsisTravelCore.Models.Domains.PageCatgory.Left))
                             {
@@ -14,30 +15,28 @@
                             }
                         </ul>
                     </div>
-                    <div class="col-md-6">
+                    @* <div class="col-md-6">
                         <ul class="navbar-nav">
                             @foreach (var item in pages.Where(c => c.PageCatgory == IsisTravelCore.Models.Domains.PageCatgory.Right))
                             {
                                 <li class="nav-item"><a asp-action="PageDetails" asp-controller="Home" asp-route-id="@item.Id">@item.Title</a></li>
                             }
                         </ul>
-                    </div>
+                    </div> *@
 
                 </div>
             </div>
 
 
-            <div class="social wow zoomIn" style="text-align:center">
+            <div class="social wow zoomIn">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
                 <i class="fa fa-twitter" aria-hidden="true"></i>
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </div>
         </div>
-        <div class="col-lg-4 wow flipInY" style="visibility: visible; animation-duration: 1700ms; animation-name: flipInX;">
-            <img src="~/img/logo-whait.png">
-        </div>
-        <div class="col-lg-4">
+       
+        <div class="col-lg-4 col-md-6">
             <div class="address wow fadeInUp">
                 <h2>@IsisTravelCore.Resources.Home.ContactUs</h2>
                 <div class="address-list">
@@ -52,11 +51,15 @@
 
                 <div class="address-list">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <p>Calle celeste n 12 Bajo 5 madrid 28043</p> <p>TRABJAMOS ONLIEN </p>
+                    <p>Calle celeste n 12 Bajo 5 madrid 28043</p> <p class="weOnline">TRABJAMOS ONLIEN </p>
                 </div>
 
 
             </div>
+        </div>
+         <div class="col-lg-4 col-md-12 wow flipInY logo-footer mt-lg-0 mt-sm-5 mt-4" style="visibility: visible; animation-duration: 1700ms; animation-name: flipInX;">
+            <img src="~/img/logo-whait.png">
+        </div>
         </div>
     </div>
     <div class="copy-right text-center">
