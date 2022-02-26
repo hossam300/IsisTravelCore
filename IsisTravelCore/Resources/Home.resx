@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutUs" xml:space="preserve">
-    <value>QUIEN SOMOS</value>
+    <value>QUIENES SOMOS</value>
   </data>
   <data name="AboutUsTitle" xml:space="preserve">
     <value>Casa - Sobre nosotros</value>
